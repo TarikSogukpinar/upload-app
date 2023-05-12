@@ -5,7 +5,7 @@ import Footer from "./footer";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
-  title: "Upload APP",
+  title: "Upload App",
   description: "Let's upload something! 🎉",
 };
 
