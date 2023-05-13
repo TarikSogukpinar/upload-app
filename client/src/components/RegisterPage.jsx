@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { registerUser } from "../app/services/authServices";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -13,6 +14,16 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
   });
+
+  const notifySuccess = (message) => {
+    toast.success(message, {
+      position: "bottom-center",
+      duration: 4000,
+    });
+  };
+
+  const notifyError = (message) =>
+    toast.error(message, { position: "bottom-center", duration: 3000 });
 
   const handleRegister = (e) => {
     setRegisterValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -28,12 +39,17 @@ export default function RegisterPage() {
         registerValue.confirmPassword
       )
         .then((res) => {
+          if (res.error) {
+            return notifyError(error.response.data.message);
+          }
+          notifySuccess("Register Successfull");
           setTimeout(() => {
             router.push("/login");
           }, 3500);
         })
         .catch((error) => {
           console.log(error);
+          notifyError(error.response.data.message);
         });
     } catch (error) {
       console.log(error);
@@ -42,6 +58,7 @@ export default function RegisterPage() {
 
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <Toaster />
       <div className="mx-auto max-w-lg text-center">
         <h1 className="text-2xl font-bold sm:text-3xl">Register!</h1>
 

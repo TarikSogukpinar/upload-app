@@ -2,8 +2,9 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import axios from "axios";
 import { useRouter } from "next/navigation";
+import { loginUser } from "../app/services/authServices";
+import toast, { Toaster } from "react-hot-toast";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -11,8 +12,45 @@ export default function LoginPage() {
     email: "",
     password: "",
   });
+
+  const handleLogin = (e) => {
+    setLoginValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  const notifySuccess = (message) =>
+    toast.success(message, {
+      position: "bottom-center",
+      duration: 3000,
+    });
+  const notifyError = (message) =>
+    toast.error(message, { position: "bottom-center", duration: 3000 });
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await loginUser(loginValues.email, loginValues.password)
+        .then((res) => {
+          if (res.error) {
+            return notifyError(res.data.message);
+          }
+          notifySuccess("Login Successfull");
+          setTimeout(() => {
+            router.push("/profile");
+          }, 3500);
+        })
+        .catch((error) => {
+          console.log(error);
+          notifyError(error.response.data.message);
+        });
+    } catch (error) {
+      console.log(error);
+      notifyError(error.response.data.message);
+    }
+  };
+
   return (
     <div className="mx-auto max-w-screen-xl px-4 py-16 sm:px-6 lg:px-8">
+      <Toaster />
       <div className="mx-auto max-w-lg text-center">
         <h1 className="text-2xl font-bold sm:text-3xl">Login!</h1>
 
@@ -22,7 +60,7 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <form action="" className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+      <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
         <div>
           <label htmlFor="email" className="sr-only">
             Email
@@ -31,6 +69,11 @@ export default function LoginPage() {
           <div className="relative">
             <input
               type="email"
+              name="email"
+              onChange={handleLogin}
+              value={loginValues.email}
+              id="email"
+              required
               className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter email"
             />
@@ -62,6 +105,11 @@ export default function LoginPage() {
           <div className="relative">
             <input
               type="password"
+              name="password"
+              onChange={handleLogin}
+              value={loginValues.password}
+              id="password"
+              required
               className="w-full rounded-lg border-gray-200 p-4 pe-12 text-sm shadow-sm"
               placeholder="Enter password"
             />
@@ -90,6 +138,8 @@ export default function LoginPage() {
             </span>
           </div>
         </div>
+
+       
 
         <div className="flex items-center justify-between">
           <p href={"/register"} className="text-sm text-gray-500">
