@@ -60,7 +60,10 @@ export default function LoginPage() {
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="mx-auto mb-0 mt-8 max-w-md space-y-4">
+      <form
+        onSubmit={handleSubmit}
+        className="mx-auto mb-0 mt-8 max-w-md space-y-4"
+      >
         <div>
           <label htmlFor="email" className="sr-only">
             Email
@@ -138,8 +141,6 @@ export default function LoginPage() {
             </span>
           </div>
         </div>
-
-       
 
         <div className="flex items-center justify-between">
           <p href={"/register"} className="text-sm text-gray-500">

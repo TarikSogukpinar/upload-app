@@ -1,7 +1,18 @@
 import React from "react";
 import Link from "next/link";
+import { cookies } from "next/headers";
+// import Cookies from "cookies";
 
-export default function Navbar() {
+async function getData() {
+  const cookieStore = cookies();
+  // console.log(cookieStore);
+  return cookieStore.getAll().map((cookie) => {
+    console.log("adı",cookie.name, "değer",cookie.value, cookie.options);
+  });
+}
+
+export default async function Navbar() {
+  const data = await getData();
   return (
     <header aria-label="Page Header" className="bg-gray-50">
       <div className="mx-auto max-w-screen-xl px-4 py-8 sm:px-6 sm:py-12 lg:px-8">
@@ -12,7 +23,7 @@ export default function Navbar() {
             </h1>
 
             <p className="mt-1.5 text-sm text-gray-500">
-              <Link href={"/"}>Let's upload something! 🎉</Link>
+              <Link href={"/"}>Let's upload something! 🎉 {data.name}</Link>
             </p>
           </div>
 
