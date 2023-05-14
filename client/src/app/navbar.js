@@ -1,7 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import NavbarLoginButton from "@/components/NavbarLoginButton";
-import NavbarProfileButton from "@/components/NavbarProfileButton";
+import NavbarLoginButton from "@/components/NavbarElements/NavbarLoginButton";
+import NavbarProfileButton from "@/components/NavbarElements/NavbarProfileButton";
 import { cookies } from "next/headers";
 
 export default async function Navbar() {
