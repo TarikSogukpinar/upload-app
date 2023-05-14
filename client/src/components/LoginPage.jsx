@@ -33,6 +33,7 @@ export default function LoginPage() {
           if (res.error) {
             return notifyError(res.data.message);
           }
+          console.log("push is run!");
           notifySuccess("Login Successfull");
           setTimeout(() => {
             router.push("/profile");
