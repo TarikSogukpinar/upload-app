@@ -25,6 +25,7 @@ export default function NavbarLogoutButton() {
           notifySuccess("Logout Successfull");
           setTimeout(() => {
             router.push("/");
+            router.refresh();
           }, 3500);
         })
         .catch((error) => {

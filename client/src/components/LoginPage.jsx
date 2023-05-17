@@ -37,6 +37,7 @@ export default function LoginPage() {
           notifySuccess("Login Successfull");
           setTimeout(() => {
             router.push("/profile");
+            router.refresh();
           }, 3500);
         })
         .catch((error) => {
