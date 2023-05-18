@@ -1,5 +1,4 @@
 import React from "react";
-import Link from "next/link";
 import HomeButtonSection from "@/components/HomeElements/HomeButtonSection";
 import HomeUploadButtonSection from "@/components/HomeElements/HomeUploadButtonSection";
 import { cookies } from "next/headers";

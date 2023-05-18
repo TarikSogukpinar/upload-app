@@ -4,7 +4,56 @@ import NavbarLogoutButton from "../NavbarElements/NavbarLogoutButton";
 import { getUser } from "../../app/services/authServices";
 import Link from "next/link";
 
+const Modal = ({ isOpen, toggle }) => {
+  const [activeMenuItem, setActiveMenuItem] = useState(null);
+
+  const menuItems = {
+    "item1": "Item 1 Content...",
+    "item2": "Item 2 Content...",
+    "item3": "Item 3 Content...",
+    // add more items as needed
+  };
+
+  const handleMenuItemClick = (menuItem) => {
+    setActiveMenuItem(menuItem);
+  };
+
+  return (
+    isOpen && (
+      <div className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div className="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:w-4/5 h-4/5 flex flex-col sm:flex-row">
+          <div className="w-full sm:w-1/3 bg-gray-200 p-4 overflow-auto">
+            <h2 className="font-bold mb-2 text-xl">Menu</h2>
+            <ul>
+              {Object.keys(menuItems).map((item) => (
+                <li key={item} className="cursor-pointer text-lg mb-2" onClick={() => handleMenuItemClick(item)}>
+                  {item.charAt(0).toUpperCase() + item.slice(1)}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div className="w-full sm:w-2/3 p-4 relative">
+            <button type="button" className="absolute top-2 right-2 inline-flex rounded-md border border-transparent shadow-sm px-2 py-1 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" onClick={toggle}>
+              X
+            </button>
+            <h3 className="text-lg leading-6 font-medium text-gray-900 mt-8 mb-2">
+              Modal Title
+            </h3>
+            <div>
+              <p className="text-sm text-gray-500">
+                {menuItems[activeMenuItem]}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  );
+};
+
+
 export default function NavbarProfileButton() {
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
 
@@ -23,6 +72,8 @@ export default function NavbarProfileButton() {
     getUserInfo();
   }, []);
 
+  const toggleModal = () => setIsOpenModal(!isOpenModal);
+
   const toggleProfileDropdown = () => setIsOpen(!isOpen);
 
   return (
@@ -34,12 +85,9 @@ export default function NavbarProfileButton() {
         >
           <div className="relative">
             <div className="inline-flex items-center overflow-hidden rounded-md border bg-white">
-              <Link
-                href={"/profile"}
-                className="border-e px-4 py-2 text-md/none text-gray-600 hover:bg-gray-50 hover:text-gray-700"
-              >
+              <button className="border-e px-4 py-2 text-md/none text-gray-600 hover:bg-gray-50 hover:text-gray-700">
                 {userInfos.userName}
-              </Link>
+              </button>
 
               <button
                 onClick={toggleProfileDropdown}
@@ -67,42 +115,15 @@ export default function NavbarProfileButton() {
                 role="menu"
               >
                 <div className="p-2">
-                  {/* <strong className="block p-2 text-xs font-medium uppercase text-gray-400">
-                General
-              </strong> */}
-
-                  <Link
-                    href={"/profile"}
+                  <button
+                    onClick={toggleModal}
                     className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
                     role="menuitem"
                   >
-                    Profile
-                  </Link>
-
-                  <a
-                    href="#"
-                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    role="menuitem"
-                  >
-                    Upload File
-                  </a>
-
-                  <a
-                    href="#"
-                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    role="menuitem"
-                  >
-                    Forget Password
-                  </a>
-
-                  <a
-                    href="#"
-                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    role="menuitem"
-                  >
-                    Contact Us
-                  </a>
+                    Manage Account
+                  </button>
                 </div>
+                <Modal isOpen={isOpenModal} toggle={toggleModal} />
                 <NavbarLogoutButton />
               </div>
             )}
