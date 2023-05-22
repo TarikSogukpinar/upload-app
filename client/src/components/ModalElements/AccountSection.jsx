@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import { getUser } from "../../app/services/authServices";
+import { getUser } from "../../app/services/userServices";
 
 export default function AccountSection() {
   const [userInfo, setUserInfo] = useState([]);
@@ -72,6 +72,12 @@ export default function AccountSection() {
                 >
                   System Role :{" "}
                   {userInfos.roles === "user" ? "Users " : "Admin"}
+                </button>
+                <button
+                  type="button"
+                  className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                >
+                  Created Date : {userInfos.createdAt}
                 </button>
               </p>
             </details>

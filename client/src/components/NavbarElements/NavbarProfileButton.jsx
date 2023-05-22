@@ -1,7 +1,8 @@
 "use client";
+
 import React, { useEffect, useState } from "react";
 import NavbarLogoutButton from "../NavbarElements/NavbarLogoutButton";
-import { getUser } from "../../app/services/authServices";
+import { getUser } from "../../app/services/userServices";
 import AccountSection from "../ModalElements/AccountSection";
 import SecuritySection from "../ModalElements/SecuritySection";
 import { RiAccountCircleLine } from "react-icons/ri";
