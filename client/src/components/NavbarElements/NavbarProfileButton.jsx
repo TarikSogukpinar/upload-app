@@ -2,46 +2,67 @@
 import React, { useEffect, useState } from "react";
 import NavbarLogoutButton from "../NavbarElements/NavbarLogoutButton";
 import { getUser } from "../../app/services/authServices";
-import Link from "next/link";
-
+import AccountSection from "../ModalElements/AccountSection";
+import SecuritySection from "../ModalElements/SecuritySection";
+import { RiAccountCircleLine, RiLockPasswordLine } from "react-icons/ri";
+import { BsShieldCheck } from "react-icons/bs"
 const Modal = ({ isOpen, toggle }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
 
   const menuItems = {
-    "item1": "Item 1 Content...",
-    "item2": "Item 2 Content...",
-    "item3": "Item 3 Content...",
-    // add more items as needed
+    Account: { component: <AccountSection />, icon: <RiAccountCircleLine /> },
+    Security: { component: <SecuritySection />, icon: <BsShieldCheck /> },
   };
 
   const handleMenuItemClick = (menuItem) => {
     setActiveMenuItem(menuItem);
   };
 
+  useEffect(() => {
+    if (isOpen) {
+      setActiveMenuItem("Account");
+    }
+  }, [isOpen]);
+
   return (
     isOpen && (
-      <div className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div className="bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:w-4/5 h-4/5 flex flex-col sm:flex-row">
-          <div className="w-full sm:w-1/3 bg-gray-200 p-4 overflow-auto">
-            <h2 className="font-bold mb-2 text-xl">Menu</h2>
+      <div
+        className="fixed z-10 inset-0 overflow-y-auto flex items-center justify-center drop-shadow-2xl"
+        aria-labelledby="modal-title"
+        role="dialog"
+        aria-modal="true"
+      >
+        <div className="antialiased bg-white rounded-xl text-left overflow-hidden shadow-xl  transform transition-all sm:w-2/4 h-4/5 flex flex-col sm:flex-row">
+          <div className="sm:w-1/3 bg-gray-50 border-collapse p-4 overflow-auto rounded-sm ">
             <ul>
               {Object.keys(menuItems).map((item) => (
-                <li key={item} className="cursor-pointer text-lg mb-2" onClick={() => handleMenuItemClick(item)}>
-                  {item.charAt(0).toUpperCase() + item.slice(1)}
-                </li>
+                <button
+                  key={item}
+                  className="antialiased flex w-full rounded-lg bg-gray-200 px-8 py-3 text-sm font-medium text-dark transition hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500 mt-5"
+                  onClick={() => handleMenuItemClick(item)}
+                >
+                  <div className="antialiased mt-1 mr-1 text-lg">{menuItems[item].icon}</div>
+
+                  <div className="antialiased text-lg">
+                     {item.charAt(0).toUpperCase() + item.slice(1)}
+                  </div>
+                 
+                </button>
               ))}
             </ul>
           </div>
-          <div className="w-full sm:w-2/3 p-4 relative">
-            <button type="button" className="absolute top-2 right-2 inline-flex rounded-md border border-transparent shadow-sm px-2 py-1 bg-red-600 text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" onClick={toggle}>
-              X
+          <div className="w-full sm:w-2/3 p-4 relative bg-gray-50 ">
+            <button
+              type="button"
+              className="absolute top-2 right-2 inline-flex rounded-sm border border-transparent shadow-sm px-2 py-1  text-base font-medium  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+              onClick={toggle}
+            >
+              <div className="text-black">X</div>
             </button>
-            <h3 className="text-lg leading-6 font-medium text-gray-900 mt-8 mb-2">
-              Modal Title
-            </h3>
+
             <div>
-              <p className="text-sm text-gray-500">
-                {menuItems[activeMenuItem]}
+              <p className="text-sm text-gray-900">
+                {menuItems[activeMenuItem]?.component}
               </p>
             </div>
           </div>
@@ -50,7 +71,6 @@ const Modal = ({ isOpen, toggle }) => {
     )
   );
 };
-
 
 export default function NavbarProfileButton() {
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -72,9 +92,13 @@ export default function NavbarProfileButton() {
     getUserInfo();
   }, []);
 
-  const toggleModal = () => setIsOpenModal(!isOpenModal);
+  const toggleModal = () => {
+    setIsOpenModal(!isOpenModal);
+  };
 
-  const toggleProfileDropdown = () => setIsOpen(!isOpen);
+  const toggleProfileDropdown = () => {
+    setIsOpen(!isOpen);
+  };
 
   return (
     <div>
@@ -115,13 +139,15 @@ export default function NavbarProfileButton() {
                 role="menu"
               >
                 <div className="p-2">
-                  <button
-                    onClick={toggleModal}
-                    className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
-                    role="menuitem"
-                  >
-                    Manage Account
-                  </button>
+                  {
+                    <button
+                      onClick={toggleModal}
+                      className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                      role="menuitem"
+                    >
+                      Manage Account
+                    </button>
+                  }
                 </div>
                 <Modal isOpen={isOpenModal} toggle={toggleModal} />
                 <NavbarLogoutButton />
