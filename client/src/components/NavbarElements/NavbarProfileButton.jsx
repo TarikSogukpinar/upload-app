@@ -4,8 +4,10 @@ import NavbarLogoutButton from "../NavbarElements/NavbarLogoutButton";
 import { getUser } from "../../app/services/authServices";
 import AccountSection from "../ModalElements/AccountSection";
 import SecuritySection from "../ModalElements/SecuritySection";
-import { RiAccountCircleLine, RiLockPasswordLine } from "react-icons/ri";
-import { BsShieldCheck } from "react-icons/bs"
+import { RiAccountCircleLine } from "react-icons/ri";
+import { FiSettings } from "react-icons/fi";
+import { BsShieldCheck } from "react-icons/bs";
+
 const Modal = ({ isOpen, toggle }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
 
@@ -41,12 +43,13 @@ const Modal = ({ isOpen, toggle }) => {
                   className="antialiased flex w-full rounded-lg bg-gray-200 px-8 py-3 text-sm font-medium text-dark transition hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500 mt-5"
                   onClick={() => handleMenuItemClick(item)}
                 >
-                  <div className="antialiased mt-1 mr-1 text-lg">{menuItems[item].icon}</div>
+                  <div className="antialiased mt-1 mr-1 text-lg">
+                    {menuItems[item].icon}
+                  </div>
 
                   <div className="antialiased text-lg">
-                     {item.charAt(0).toUpperCase() + item.slice(1)}
+                    {item.charAt(0).toUpperCase() + item.slice(1)}
                   </div>
-                 
                 </button>
               ))}
             </ul>
@@ -142,10 +145,10 @@ export default function NavbarProfileButton() {
                   {
                     <button
                       onClick={toggleModal}
-                      className="block rounded-lg px-4 py-2 text-sm text-gray-500 hover:bg-gray-50 hover:text-gray-700"
+                      className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-dark hover:bg-indigo-50"
                       role="menuitem"
                     >
-                      Manage Account
+                      <FiSettings /> Manage Account
                     </button>
                   }
                 </div>
