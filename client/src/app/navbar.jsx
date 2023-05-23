@@ -3,6 +3,7 @@ import Link from "next/link";
 import NavbarLoginButton from "@/components/NavbarElements/NavbarLoginButton";
 import NavbarProfileButton from "@/components/NavbarElements/NavbarProfileButton";
 import { cookies } from "next/headers";
+
 export default async function Navbar() {
   const cookieStore = cookies().get("token");
 
@@ -19,7 +20,7 @@ export default async function Navbar() {
             </h1>
 
             <p className="mt-1.5 text-sm text-gray-900 antialiased hover:text-indigo-800">
-              <Link href={"/"}>Let's upload something! 🎉</Link>
+              <Link href={"/"}> Let's upload something! 🎉</Link>
             </p>
           </div>
 
