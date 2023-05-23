@@ -1,19 +1,12 @@
 import React from "react";
 import { logoutUser } from "@/app/services/authServices";
 import { useRouter } from "next/navigation";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 export default function NavbarLogoutButton() {
   const router = useRouter();
-
-  const notifySuccess = (message) =>
-    toast.success(message, {
-      position: "bottom-center",
-      duration: 3000,
-    });
-  const notifyError = (message) =>
-    toast.error(message, { position: "bottom-center", duration: 3000 });
-
+ 
   const handleLogout = async (e) => {
     e.preventDefault();
     try {

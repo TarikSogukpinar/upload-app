@@ -4,7 +4,8 @@ import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { loginUser } from "../app/services/authServices";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -17,14 +18,6 @@ export default function LoginPage() {
     setLoginValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const notifySuccess = (message) =>
-    toast.success(message, {
-      position: "bottom-center",
-      duration: 3000,
-    });
-  const notifyError = (message) =>
-    toast.error(message, { position: "bottom-center", duration: 3000 });
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -33,10 +26,9 @@ export default function LoginPage() {
           if (res.error) {
             return notifyError(res.data.message);
           }
-          console.log("push is run!");
           notifySuccess("Login Successfull");
           setTimeout(() => {
-            router.push("/profile");
+            router.push("/home");
             router.refresh();
           }, 3500);
         })

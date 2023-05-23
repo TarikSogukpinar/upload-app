@@ -4,7 +4,8 @@ import React, { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { registerUser } from "../app/services/authServices";
-import toast, { Toaster } from "react-hot-toast";
+import { Toaster } from "react-hot-toast";
+import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -14,16 +15,6 @@ export default function RegisterPage() {
     password: "",
     confirmPassword: "",
   });
-
-  const notifySuccess = (message) => {
-    toast.success(message, {
-      position: "bottom-center",
-      duration: 4000,
-    });
-  };
-
-  const notifyError = (message) =>
-    toast.error(message, { position: "bottom-center", duration: 3000 });
 
   const handleRegister = (e) => {
     setRegisterValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
