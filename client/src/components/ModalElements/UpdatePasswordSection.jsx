@@ -55,13 +55,13 @@ export default function UpdatePasswordSection() {
   };
 
   return (
-    <p className="mt-4 px-4 leading-relaxed text-gray-700 text-lg">
+    <div className="mt-4 px-4 leading-relaxed text-gray-700 text-lg">
       {/* Update User Password */}
       <form action="" onSubmit={handleSubmit}>
         <div className="w-full flex justify-start mt-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
-              <label className="antialiased sr-only" for="email">
+              <label className="antialiased sr-only" htmlFor="email">
                 Password
               </label>
               <input
@@ -77,7 +77,7 @@ export default function UpdatePasswordSection() {
             </div>
 
             <div>
-              <label className="antialiased sr-only" for="phone">
+              <label className="antialiased sr-only" htmlFor="phone">
                 Confirm Password
               </label>
               <input
@@ -100,6 +100,6 @@ export default function UpdatePasswordSection() {
           </div>
         </div>
       </form>
-    </p>
+    </div>
   );
 }

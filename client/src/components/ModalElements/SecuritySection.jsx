@@ -6,7 +6,7 @@ export default function SecuritySection() {
     <div>
       <h2 className="antialiased text-lg leading-6 font-medium text-gray-900 mt-8 mb-2">
         Modal Title Security
-        <p className="text-sm">Manage your security settings</p>
+        <h2 className="text-sm">Manage your security settings</h2>
       </h2>
       <div className="space-y-4" >
         <details

@@ -26,10 +26,10 @@ export default function AccountSection() {
         <div key={index}>
           <h3 className="antialiased text-3xl leading-6 font-medium text-gray-900 mt-8 mb-2">
             Account Settings
-            <p className="antialiased text-sm mt-2">Manage your account</p>
+            <h3 className="antialiased text-sm mt-2">Manage your account</h3>
           </h3>
           <div className="space-y-4">
-            <details
+            <div
               className="group [&_summary::-webkit-details-marker]:hidden"
               open
             >
@@ -54,7 +54,7 @@ export default function AccountSection() {
                 </svg>
               </summary>
 
-              <p className="mt-1 mb-1 px-4 leading-relaxed text-gray-700 antialiased">
+              <div className="mt-1 mb-1 px-4 leading-relaxed text-gray-700 antialiased">
                 <button
                   type="button"
                   className="antialiased flex  rounded-lg hover:bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
@@ -80,8 +80,8 @@ export default function AccountSection() {
                 >
                   Created Date : {userInfos.createdAt}
                 </button>
-              </p>
-            </details>
+              </div>
+            </div>
 
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer items-center justify-start gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">

@@ -7,7 +7,7 @@ export const registerUser = async (
   confirmPassword
 ) => {
   return await axios.post(
-    `http://localhost:5000/api/auth/register`,
+    `${process.env.SERVER_HOST}/api/auth/register`,
     {
       userName,
       email,
@@ -39,10 +39,9 @@ export const logoutUser = async () => {
   });
 };
 
-
 export const updatePassword = async (_id, password, confirmPassword) => {
   return await axios.put(
-    `http://localhost:5000/api/auth/updatePassword/${_id}`,
+    `${process.env.SERVER_HOST}/api/auth/updatePassword/${_id}`,
     {
       password,
       confirmPassword,
