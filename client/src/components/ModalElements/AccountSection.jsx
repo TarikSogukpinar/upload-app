@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getUser } from "../../app/services/userServices";
+import UpdatePasswordSection from "./UpdatePasswordSection";
 
 export default function AccountSection() {
   const [userInfo, setUserInfo] = useState([]);
@@ -104,43 +105,7 @@ export default function AccountSection() {
                 </svg>
               </summary>
 
-              <p className="mt-4 px-4 leading-relaxed text-gray-700 text-lg">
-                <form action="">
-                  <div className="w-full flex justify-start mt-4">
-                    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-                      <div>
-                        <label className="antialiased sr-only" for="email">
-                          Password
-                        </label>
-                        <input
-                          className="w-full rounded-lg border-gray-200 p-3 text-lg"
-                          placeholder="Password"
-                          type="email"
-                          id="email"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="antialiased sr-only" for="phone">
-                          Confirm Password
-                        </label>
-                        <input
-                          className="w-full rounded-lg border-gray-200 p-3 text-lg"
-                          placeholder="Confirm Password"
-                          type="tel"
-                          id="phone"
-                        />
-                      </div>
-                      <button
-                        type="submit"
-                        className="antialiased inline-block rounded-lg bg-indigo-900 px-5 py-3 text-sm font-medium text-white justify-end"
-                      >
-                        Update
-                      </button>
-                    </div>
-                  </div>
-                </form>
-              </p>
+              <UpdatePasswordSection />
             </details>
           </div>
         </div>

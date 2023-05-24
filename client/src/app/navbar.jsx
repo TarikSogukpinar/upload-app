@@ -6,6 +6,7 @@ import { cookies } from "next/headers";
 
 export default async function Navbar() {
   const cookieStore = cookies().get("token");
+  // console.log(cookieStore.value);
 
   return (
     <header aria-label="Page Header" className="bg-gray-50">
