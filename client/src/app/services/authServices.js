@@ -20,7 +20,7 @@ export const registerUser = async (
 
 export const loginUser = async (email, password) => {
   return await axios.post(
-    `http://localhost:5000/api/auth/login`,
+    `${process.env.SERVER_HOST}/api/auth/login`,
     {
       email,
       password,
@@ -33,7 +33,7 @@ export const loginUser = async (email, password) => {
 };
 
 export const logoutUser = async () => {
-  return await axios.get(`http://localhost:5000/api/auth/logout`, {
+  return await axios.get(`${process.env.SERVER_HOST}/api/auth/logout`, {
     credentials: "include",
     withCredentials: true,
   });
