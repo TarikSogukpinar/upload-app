@@ -83,9 +83,7 @@ export default function Home() {
           </p>
         </div>
 
-        {/* <div className="mx-auto mt-8 max-w-xl">
-          
-        </div> */}
+      
       </div>
     </section>
   );
