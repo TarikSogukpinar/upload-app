@@ -1,9 +1,9 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 import { useRouter } from "next/navigation";
-import { updatePassword, getUser } from "@/app/services/userServices";
+import { updatePassword } from "@/app/services/authServices";
+import { getUser } from "@/app/services/userServices";
 
 export default function UpdatePasswordSection() {
   const router = useRouter();
@@ -33,9 +33,21 @@ export default function UpdatePasswordSection() {
         userInfo._id,
         password.password,
         password.confirmPassword
-      );
-      router.push("/");
-      notifySuccess("Password Updated Successfully");
+      )
+        .then((res) => {
+          if (res.error) {
+            return notifyError(res.data.message);
+          }
+
+          setTimeout(() => {
+            notifySuccess("Password Updated Successfully");
+            router.push("/");
+          }, 3000);
+        })
+        .catch((error) => {
+          console.error(error.message);
+          notifyError(error.response.data.message);
+        });
     } catch (error) {
       console.error(error.message);
       notifyError(error.response.data.message);

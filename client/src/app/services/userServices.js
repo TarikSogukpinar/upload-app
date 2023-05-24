@@ -7,13 +7,3 @@ export const getUser = async () => {
   });
 };
 
-export const updatePassword = async (_id, password, confirmPassword) => {
-  return await axios.put(
-    `http://localhost:5000/api/auth/updatePassword/${_id}`,
-    {
-      password,
-      confirmPassword,
-    },
-    { withCredentials: true, credentials: "include" }
-  );
-};
