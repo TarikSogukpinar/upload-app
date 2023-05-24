@@ -112,30 +112,37 @@ export default function NavbarProfileButton() {
           className="mt-4 flex flex-col gap-8 sm:mt-0 sm:flex-row sm:items-center"
         >
           <div className="relative">
-            <div className="inline-flex items-center overflow-hidden rounded-md border bg-white">
-              <button className="border-e px-4 py-2 text-md/none text-gray-600 hover:bg-gray-50 hover:text-gray-700">
-                {userInfos.userName}
-              </button>
+            <button
+              type="button"
+              onClick={toggleProfileDropdown}
+              class="group flex shrink-0 items-center rounded-lg transition"
+            >
+              <span class="sr-only">Menu</span>
+              <img
+                alt="Man"
+                src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
+                class="h-10 w-10 rounded-full object-cover"
+              />
 
-              <button
-                onClick={toggleProfileDropdown}
-                className="h-full p-2 text-gray-600 hover:bg-gray-50 hover:text-gray-700"
+              <p class="ms-2 hidden text-left text-xs sm:block">
+                <strong class="block font-medium">{userInfos.userName}</strong>
+
+                <span class="text-gray-500"> {userInfos.email} </span>
+              </p>
+
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="ms-4 hidden h-5 w-5 text-gray-500 transition group-hover:text-gray-700 sm:block"
+                viewBox="0 0 20 20"
+                fill="currentColor"
               >
-                <span className="sr-only">Menu</span>
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-4 w-4"
-                  viewBox="0 0 20 20"
-                  fill="currentColor"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </button>
-            </div>
+                <path
+                  fill-rule="evenodd"
+                  d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
 
             {isOpen && (
               <div
