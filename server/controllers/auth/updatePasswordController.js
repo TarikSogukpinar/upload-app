@@ -22,10 +22,9 @@ const updatePassword = async (req, res) => {
     );
 
     const user = await User.findById(id);
-    console.log("kullanıcı", user);
 
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ error: true, message: error.message });
     }
 
     const oldPassword = await bcrypt.compareSync(password, user.password);
@@ -48,7 +47,6 @@ const updatePassword = async (req, res) => {
       });
     }
 
-    //update password
     const data = await User.findByIdAndUpdate(
       id,
       {
@@ -58,6 +56,7 @@ const updatePassword = async (req, res) => {
     );
 
     res.status(200).json({
+      error: false,
       data: `User id: '${data._id}'`,
       message: `Password is updated for ${data.userName}`,
     });
