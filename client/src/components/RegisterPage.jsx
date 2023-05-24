@@ -20,7 +20,7 @@ export default function RegisterPage() {
     setRegisterValue((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleRegisterSubmit = async (e) => {
     e.preventDefault();
     try {
       await registerUser(
@@ -60,7 +60,7 @@ export default function RegisterPage() {
       </div>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleRegisterSubmit}
         className="mx-auto mb-0 mt-8 max-w-md space-y-4"
       >
         <div>

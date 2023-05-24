@@ -26,3 +26,14 @@ export const getUserOperatingSystemType = async () => {
     }
   );
 };
+
+
+export const userAccountDeleted = async (id) => {
+  return await axios.delete(
+    `${process.env.SERVER_HOST}/api/user/userAccountDeleted/${id}`,
+    {
+      credentials: "include",
+      withCredentials: true,
+    }
+  );
+}

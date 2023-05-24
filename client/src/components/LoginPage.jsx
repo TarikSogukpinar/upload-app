@@ -18,7 +18,7 @@ export default function LoginPage() {
     setLoginValues((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
       await loginUser(loginValues.email, loginValues.password)
@@ -55,7 +55,7 @@ export default function LoginPage() {
       </div>
 
       <form
-        onSubmit={handleSubmit}
+        onSubmit={handleLoginSubmit}
         className="mx-auto mb-0 mt-8 max-w-md space-y-4"
       >
         <div>

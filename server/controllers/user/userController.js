@@ -18,20 +18,32 @@ const getUser = async (req, res) => {
   }
 };
 
-const getUserLocationInformation = async (req, res) => {
+const userAccountDeleted = async (req, res) => {
   try {
-    const getIp = await getIpInformation();
-    const getLocation = await getLocationInformation(getIp);
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+    
+    if (!user) {
+      return res.status(404).json({ error: true, message: "User not found" });
+    }
 
-    res.json({ getLocation, getIp });
+    res.status(200).json({ error: false, message: "User deleted" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });
   }
 };
 
-const healthCheck = async (req, res) => {
-  res.json({ message: "Server is up and running" });
+const getUserLocationInformation = async (req, res) => {
+  try {
+    const getIp = await getIpInformation();
+    const getLocation = await getLocationInformation(getIp);
+
+    res.status(200).json({ error: false, getLocation, getIp });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: true, message: error.message });
+  }
 };
 
 const getUserOperatingSystemType = async (req, res) => {
@@ -59,8 +71,7 @@ const getUserOperatingSystemType = async (req, res) => {
       getUserOperatingSystemType = "Linux";
     }
 
-    res.json({ error: false, getUserOperatingSystemType });
-    
+    res.status(200).json({ error: false, getUserOperatingSystemType });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });
@@ -71,5 +82,5 @@ export default {
   getUser,
   getUserLocationInformation,
   getUserOperatingSystemType,
-  healthCheck,
+  userAccountDeleted,
 };

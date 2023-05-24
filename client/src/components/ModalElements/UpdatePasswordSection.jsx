@@ -26,7 +26,7 @@ export default function UpdatePasswordSection() {
     setPassword((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
-  const handleSubmit = async (e) => {
+  const handleUpdatePasswordSubmit = async (e) => {
     e.preventDefault();
     try {
       await updatePassword(
@@ -57,7 +57,7 @@ export default function UpdatePasswordSection() {
   return (
     <div className="mt-4 px-4 leading-relaxed text-gray-700 text-lg">
       {/* Update User Password */}
-      <form action="" onSubmit={handleSubmit}>
+      <form action="" onSubmit={handleUpdatePasswordSubmit}>
         <div className="w-full flex justify-start mt-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>

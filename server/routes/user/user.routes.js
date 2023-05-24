@@ -12,12 +12,16 @@ router.get(
   userController.getUserLocationInformation
 );
 
-router.get("/healthCheck", userController.healthCheck);
-
 router.get(
   "/getUserOperatingSystemType",
   verifyToken,
   userController.getUserOperatingSystemType
+);
+
+router.delete(
+  "/userAccountDeleted/:id",
+  verifyToken,
+  userController.userAccountDeleted
 );
 
 export default router;
