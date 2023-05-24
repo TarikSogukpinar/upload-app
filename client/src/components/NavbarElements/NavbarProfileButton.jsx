@@ -65,9 +65,9 @@ const Modal = ({ isOpen, toggle }) => {
             </button>
 
             <div>
-              <p className="text-sm text-gray-900">
+              <h1 className="text-sm text-gray-900">
                 {menuItems[activeMenuItem]?.component}
-              </p>
+              </h1>
             </div>
           </div>
         </div>
@@ -124,11 +124,11 @@ export default function NavbarProfileButton() {
                 className="h-10 w-10 rounded-full object-cover"
               />
 
-              <p className="ms-2 hidden text-left text-xs sm:block">
+              <div className="ms-2 hidden text-left text-xs sm:block">
                 <strong className="block font-medium">{userInfos.userName}</strong>
 
                 <span className="text-gray-500"> {userInfos.email} </span>
-              </p>
+              </div>
 
               <svg
                 xmlns="http://www.w3.org/2000/svg"

@@ -30,16 +30,16 @@ export default function SecuritySection() {
   return (
     <div>
       <div>
-        <h3 className="antialiased text-3xl leading-6 font-medium text-gray-900 mt-8 mb-2">
+        <h1 className="antialiased text-3xl leading-6 font-medium text-gray-900 mt-8 mb-2">
           Security Settings
-          <h3 className="antialiased text-sm mt-2">
-            Manage your security settings
-          </h3>
-        </h3>
+        </h1>
+        <h2 className="antialiased text-sm mt-2">
+          Manage your security settings
+        </h2>
         <div className="space-y-4">
           <div
             className="group [&_summary::-webkit-details-marker]:hidden"
-            false
+            open={false}
           >
             <summary className="antialiased flex cursor-pointer items-center justify-start gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">
               <h2 className="font-medium text-lg antialiased">
@@ -100,7 +100,9 @@ export default function SecuritySection() {
             </div>
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer items-center justify-start gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">
-                <h2 className="antialiased font-medium text-lg">Delete Account</h2>
+                <h2 className="antialiased font-medium text-lg">
+                  Delete Account
+                </h2>
 
                 <svg
                   className="h-5 w-5 shrink-0 transition duration-300 group-open:-rotate-180"
