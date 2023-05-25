@@ -1,7 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
 import { getUser } from "../../app/services/userServices";
-import UpdatePasswordSection from "./UpdatePasswordSection";
+// import UpdatePasswordSection from "./UpdatePasswordSection";
+
+const UpdatePasswordSection = dynamic(() => import("./UpdatePasswordSection"));
 
 export default function AccountSection() {
   const [userInfo, setUserInfo] = useState([]);

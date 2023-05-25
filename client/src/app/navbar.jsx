@@ -1,8 +1,14 @@
 import React from "react";
 import Link from "next/link";
-import NavbarLoginButton from "@/components/NavbarElements/NavbarLoginButton";
-import NavbarProfileButton from "@/components/NavbarElements/NavbarProfileButton";
+import dynamic from "next/dynamic";
 import { cookies } from "next/headers";
+
+const NavbarProfileButton = dynamic(() =>
+  import("@/components/NavbarElements/NavbarProfileButton")
+);
+const NavbarLoginButton = dynamic(() =>
+  import("@/components/NavbarElements/NavbarLoginButton")
+);
 
 export default async function Navbar() {
   const cookieStore = cookies().get("token");

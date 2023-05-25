@@ -3,10 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { loginUser } from "../app/services/authServices";
+import { loginUser } from "@/app/services/authServices";
 import { Toaster } from "react-hot-toast";
 import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
-import LoadingIcons from "react-loading-icons";
 
 export default function LoginPage() {
   const router = useRouter();
@@ -69,8 +68,7 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold sm:text-3xl">Login!</h1>
 
           <p className="mt-4 text-gray-500">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Et libero
-            nulla eaque error neque ipsa culpa autem, at itaque nostrum!
+          Please log in before uploading files!
           </p>
           <form
             onSubmit={handleLoginSubmit}

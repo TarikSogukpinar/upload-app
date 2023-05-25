@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { logoutUser } from "@/app/services/authServices";
 import { useRouter } from "next/navigation";
@@ -6,7 +7,7 @@ import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 export default function NavbarLogoutButton() {
   const router = useRouter();
- 
+
   const handleLogout = async (e) => {
     e.preventDefault();
     try {

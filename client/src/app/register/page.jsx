@@ -1,6 +1,8 @@
 import React from "react";
-import RegisterPage from "../../components/RegisterPage";
+import dynamic from "next/dynamic";
+
+const RegisterPage = dynamic(() => import("../../components/RegisterPage"));
 
 export default function Register() {
-  return <RegisterPage/>;
+  return <RegisterPage />;
 }

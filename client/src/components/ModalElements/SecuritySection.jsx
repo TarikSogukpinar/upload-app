@@ -1,10 +1,13 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import dynamic from 'next/dynamic';
 import {
   getUserLocationInformation,
   getUserOperatingSystemType,
 } from "@/app/services/userServices";
-import DeleteAccountSection from "./DeleteAccountSection";
+// import DeleteAccountSection from "./DeleteAccountSection";
+
+const DeleteAccountSection = dynamic(() => import("./DeleteAccountSection"));
 
 export default function SecuritySection() {
   const [userInformation, setUserInformation] = useState({});

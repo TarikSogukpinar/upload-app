@@ -7,9 +7,9 @@ export default async function middleware(req) {
     return NextResponse.rewrite(new URL("/login", req.url));
   }
   if (verify && req.nextUrl.pathname.startsWith("/login")) {
-    return NextResponse.rewrite(new URL("/profile", req.url));
+    return NextResponse.rewrite(new URL("/", req.url));
   }
   if (verify && req.nextUrl.pathname.startsWith("/register")) {
-    return NextResponse.rewrite(new URL("/profile", req.url));
+    return NextResponse.rewrite(new URL("/", req.url));
   }
 }

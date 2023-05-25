@@ -1,13 +1,19 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import NavbarLogoutButton from "../NavbarElements/NavbarLogoutButton";
+import dynamic from "next/dynamic";
 import { getUser } from "../../app/services/userServices";
-import AccountSection from "../ModalElements/AccountSection";
-import SecuritySection from "../ModalElements/SecuritySection";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FiSettings } from "react-icons/fi";
 import { BsShieldCheck } from "react-icons/bs";
+
+const NavbarLogoutButton = dynamic(() =>
+  import("../NavbarElements/NavbarLogoutButton")
+);
+const AccountSection = dynamic(() => import("../ModalElements/AccountSection"));
+const SecuritySection = dynamic(() =>
+  import("../ModalElements/SecuritySection")
+);
 
 const Modal = ({ isOpen, toggle }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
@@ -125,7 +131,9 @@ export default function NavbarProfileButton() {
               />
 
               <div className="ms-2 hidden text-left text-xs sm:block">
-                <strong className="block font-medium">{userInfos.userName}</strong>
+                <strong className="block font-medium">
+                  {userInfos.userName}
+                </strong>
 
                 <span className="text-gray-500"> {userInfos.email} </span>
               </div>
