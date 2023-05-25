@@ -93,7 +93,7 @@ export default function UpdatePasswordSection() {
             </div>
             <button
               type="submit"
-              className="antialiased inline-block rounded-lg bg-indigo-900 px-5 py-3 text-sm font-medium text-white justify-end"
+              className="antialiased inline-block rounded-lg bg-indigo-900 px-5 py-3  text-sm font-medium text-white justify-end"
             >
               Update
             </button>

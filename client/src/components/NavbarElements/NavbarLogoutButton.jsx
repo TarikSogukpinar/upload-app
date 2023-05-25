@@ -19,7 +19,7 @@ export default function NavbarLogoutButton() {
           setTimeout(() => {
             router.push("/");
             router.refresh();
-          }, 3500);
+          }, 1000);
         })
         .catch((error) => {
           console.log(error);
