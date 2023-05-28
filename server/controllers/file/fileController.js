@@ -3,17 +3,33 @@ import path from "path";
 import fs from "fs";
 import axios from "axios";
 import FormData from "form-data";
+import slugify from "slugify";
+import { v4 as uuidv4 } from "uuid";
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, "./files/");
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
-    cb(
-      null,
-      file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname)
+    const randomUniqueName = uuidv4();
+
+    const fileName = path.basename(
+      file.originalname,
+      path.extname(file.originalname)
     );
+
+    const fileExt = path.extname(file.originalname);
+
+    const cleanedFileName = slugify(fileName, {
+      replacement: "-",
+      remove: /[*+~.()'"!:@]/g,
+      lower: true,
+      strict: true,
+    });
+
+    const limitedFileName = cleanedFileName.substring(0, 50); // Limit the filename length to 100 characters
+
+    cb(null, randomUniqueName + "-" + limitedFileName + fileExt);
   },
 });
 
@@ -54,7 +70,7 @@ const uplodFile = async (req, res, next) => {
     formData.append("file", file);
 
     const result = await axios.post(
-      "https://www.virustotal.com/api/v3/files",
+      `${process.env.VIRUS_TOTAL_API_URL}`,
       formData,
       {
         headers: {
