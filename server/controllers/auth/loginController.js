@@ -7,6 +7,7 @@ import { generateToken } from "../../helpers/tokens/generateToken.js"
 const loginUser = async (req, res) => {
   try {
     const { error } = loginValidationSchema(req.body);
+    
     if (error) {
       return res
         .status(400)
