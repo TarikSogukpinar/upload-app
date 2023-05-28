@@ -130,7 +130,7 @@ export default function NavbarProfileButton() {
                 className="h-10 w-10 rounded-full object-cover"
               />
 
-              <div className="ms-2 hidden text-left text-xs ">
+              <div className="ms-2  text-left text-xs ">
                 <strong className="block font-medium">
                   {userInfos.userName}
                 </strong>
