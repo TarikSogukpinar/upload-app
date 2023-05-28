@@ -9,6 +9,7 @@ import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 export default function RegisterPage() {
   const router = useRouter();
+  
   const [registerValue, setRegisterValue] = useState({
     userName: "",
     email: "",

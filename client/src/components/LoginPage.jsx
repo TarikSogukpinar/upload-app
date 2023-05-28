@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 export default function LoginPage() {
+  
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -58,7 +59,6 @@ export default function LoginPage() {
       {loading ? (
         <div className="flex justify-center items-center h-fit">
           {" "}
-
           <div className="absolute right-1/2 bottom-1/2  transform translate-x-1/2 translate-y-1/2 ">
             <div className="antialiased border-t-transparent border-solid animate-spin  rounded-full border-indigo-900 border-8 h-64 w-64"></div>
           </div>
@@ -68,7 +68,7 @@ export default function LoginPage() {
           <h1 className="text-2xl font-bold sm:text-3xl">Login!</h1>
 
           <p className="mt-4 text-gray-500">
-          Please log in before uploading files!
+            Please log in before uploading files!
           </p>
           <form
             onSubmit={handleLoginSubmit}
@@ -153,7 +153,10 @@ export default function LoginPage() {
             </div>
 
             <div className="flex items-center justify-between">
-              <p href={"/register"} className="antialiased text-sm text-gray-500">
+              <p
+                href={"/register"}
+                className="antialiased text-sm text-gray-500"
+              >
                 No account?
                 <Link className="antialiased underline" href={"/register"}>
                   Register
