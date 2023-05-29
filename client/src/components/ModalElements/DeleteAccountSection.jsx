@@ -47,7 +47,7 @@ export default function DeleteAccountSection() {
             <button
               type="submit"
               onClick={handleDeleteAccount}
-              className="antialiased inline-block rounded-lg bg-indigo-900 px-5 py-3 text-sm font-medium text-white justify-end"
+              className="antialiased inline-block rounded-lg bg-indigo-900 px-5 py-3 text-sm font-bold text-white justify-end"
             >
               Delete Account
             </button>

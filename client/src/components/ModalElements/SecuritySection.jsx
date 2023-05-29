@@ -1,11 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import {
   getUserLocationInformation,
   getUserOperatingSystemType,
 } from "@/app/services/userServices";
-// import DeleteAccountSection from "./DeleteAccountSection";
+import { FaWindows, FaApple, FaLinux } from "react-icons/fa";
 
 const DeleteAccountSection = dynamic(() => import("./DeleteAccountSection"));
 
@@ -45,7 +45,7 @@ export default function SecuritySection() {
             open={false}
           >
             <summary className="antialiased flex cursor-pointer items-center justify-start gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">
-              <h2 className="font-medium text-lg antialiased">
+              <h2 className="font-bold text-lg antialiased">
                 Location Information
               </h2>
 
@@ -68,42 +68,49 @@ export default function SecuritySection() {
             <div className="mt-1 mb-1 px-4 leading-relaxed text-gray-700 antialiased">
               <button
                 type="button"
-                className="antialiased flex  rounded-lg hover:bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                className="antialiased flex  rounded-lg hover:bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
               >
                 Location :{" "}
-                <span className="text-gray-500">{userInformation.city}</span>
+                <span className="font-bold"> {userInformation.city}</span>
               </button>
               <button
                 type="button"
-                className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                className="antialiased flex rounded-lg bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
               >
                 Ip Address:{" "}
-                <span className="text-gray-500">{userIpInformation}</span>
+                <span className="font-bold"> {userIpInformation}</span>
               </button>
               <button
                 type="button"
-                className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
               >
                 Time Zone :{" "}
-                <span className="text-gray-500">
-                  {userInformation.timezone}
-                </span>
+                <span className="font-bold"> {userInformation.timezone}</span>
               </button>
               <button
                 type="button"
-                className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
               >
-                Operating System :
-                <span className="text-gray-500">
-                  {userOsInformation.getUserOperatingSystemType === null
-                    ? "Unknown"
-                    : userOsInformation.getUserOperatingSystemType}
+                Operating System
+                <span className="font-bold ml-3 mb-1">
+                  {userOsInformation.getUserOperatingSystemType ===
+                  "Windows" ? (
+                    <FaWindows fontSize={"30"} />
+                  ) : userOsInformation.getUserOperatingSystemType ===
+                    "MacOS" ? (
+                    <FaApple fontSize={"30"} />
+                  ) : userOsInformation.getUserOperatingSystemType ===
+                    "Linux" ? (
+                    <FaLinux fontSize={"30"} />
+                  ) : (
+                    userOsInformation.getUserOperatingSystemType
+                  )}
                 </span>
               </button>
             </div>
             <details className="group [&_summary::-webkit-details-marker]:hidden">
               <summary className="flex cursor-pointer items-center justify-start gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">
-                <h2 className="antialiased font-medium text-lg">
+                <h2 className="antialiased font-bold text-lg">
                   Delete Account
                 </h2>
 

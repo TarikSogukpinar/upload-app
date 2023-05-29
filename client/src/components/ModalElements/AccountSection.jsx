@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import dynamic from 'next/dynamic';
+import dynamic from "next/dynamic";
 import { getUser } from "../../app/services/userServices";
 // import UpdatePasswordSection from "./UpdatePasswordSection";
 
@@ -29,8 +29,7 @@ export default function AccountSection() {
         <div key={index}>
           <h3 className="antialiased text-3xl leading-6 font-medium text-gray-900 mt-8 mb-2">
             Account Settings
-           
-          </h3> 
+          </h3>
           <h2 className="antialiased text-sm mt-2">Manage your account</h2>
           <div className="space-y-4">
             <div
@@ -38,7 +37,7 @@ export default function AccountSection() {
               open
             >
               <summary className="antialiased flex cursor-pointer items-center justify-start gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">
-                <h2 className="font-medium text-lg antialiased">
+                <h2 className="font-bold text-lg antialiased ">
                   Profile Information
                 </h2>
 
@@ -61,26 +60,26 @@ export default function AccountSection() {
               <div className="mt-1 mb-1 px-4 leading-relaxed text-gray-700 antialiased">
                 <button
                   type="button"
-                  className="antialiased flex  rounded-lg hover:bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                  className="antialiased flex  rounded-lg hover:bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
                 >
                   Email addresses : {userInfos.email}
                 </button>
                 <button
                   type="button"
-                  className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                  className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
                 >
                   User Name: {userInfos.userName}
                 </button>
                 <button
                   type="button"
-                  className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                  className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
                 >
                   System Role :{" "}
                   {userInfos.roles === "user" ? "Users " : "Admin"}
                 </button>
                 <button
                   type="button"
-                  className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-medium text-dark transition  active:bg-indigo-500 mt-5 "
+                  className="antialiased flex  rounded-lg bg-gray-50 px-8 py-1 text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
                 >
                   Created Date : {userInfos.createdAt}
                 </button>
@@ -90,7 +89,7 @@ export default function AccountSection() {
             <div>
               <details className="group [&_summary::-webkit-details-marker]:hidden">
                 <summary className="flex cursor-pointer items-center justify-start gap-1.5 rounded-lg bg-gray-50 p-4 text-gray-900">
-                  <h2 className="antialiased font-medium text-lg">
+                  <h2 className="antialiased font-bold text-lg">
                     Update Password
                   </h2>
 

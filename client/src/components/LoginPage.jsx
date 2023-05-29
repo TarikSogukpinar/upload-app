@@ -8,7 +8,6 @@ import { Toaster } from "react-hot-toast";
 import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 export default function LoginPage() {
-  
   const router = useRouter();
 
   const [loading, setLoading] = useState(false);
@@ -29,7 +28,7 @@ export default function LoginPage() {
       await loginUser(loginValues.email, loginValues.password)
         .then((res) => {
           if (res.error) {
-            return notifyError(res.data.message);
+            return notifyError(error.response.data.message);
           }
           notifySuccess("Login Successfull");
           setTimeout(() => {
