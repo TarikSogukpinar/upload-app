@@ -1,6 +1,6 @@
 import React from "react";
-import HomeButtonSection from "@/components/HomeElements/HomeButtonSection";
-import HomeUploadButtonSection from "@/components/HomeElements/HomeUploadButtonSection";
+import NavbarLoginButton from "@/components/NavbarElements/NavbarLoginButton";
+import NavbarLogoutButton from "@/components/NavbarElements/NavbarLogoutButton";
 import { cookies } from "next/headers";
 
 export default function Home() {
@@ -16,7 +16,7 @@ export default function Home() {
                 Increase Conversion.
               </strong>
             </h1>
-            {!cookieStore ? <HomeButtonSection /> : <HomeUploadButtonSection />}
+            {!cookieStore ? <NavbarLogoutButton /> : <NavbarLoginButton />}
           </div>
         </div>
       </section>

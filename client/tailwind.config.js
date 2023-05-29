@@ -22,8 +22,13 @@ module.exports = {
         },
       }),
       fontFamily: {
-        'poppins': ['Poppins', 'sans-serif']
-      }
+        poppins: ["Poppins", "sans-serif"],
+      },
+      screens: {
+        xs: "320px",
+        s: "375px",
+        m: "425px",
+      },
     },
   },
   plugins: [],

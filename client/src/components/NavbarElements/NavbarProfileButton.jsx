@@ -127,10 +127,10 @@ export default function NavbarProfileButton() {
               <img
                 alt="Man"
                 src="https://images.unsplash.com/photo-1600486913747-55e5470d6f40?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80"
-                className="h-10 w-10 rounded-full object-cover"
+                className="h-10 w-10 rounded-full object-cover m:w-10 m:h-10 "
               />
 
-              <div className="ms-2  text-left text-xs ">
+              <div className="m-2 sm:m-3 md:m-4 lg:m-5 xl:m-6 text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl m:m-5 m:text-3xl s:m-4 s:text-3xl xs:m-4 xs:text-xl">
                 <strong className="block font-medium">
                   {userInfos.userName}
                 </strong>
