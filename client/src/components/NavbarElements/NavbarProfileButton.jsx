@@ -17,7 +17,6 @@ const SecuritySection = dynamic(() =>
 
 const Modal = ({ isOpen, toggle, cookie }) => {
   const [activeMenuItem, setActiveMenuItem] = useState(null);
-  console.log("modal cookie", cookie.value);
 
   const menuItems = {
     Account: {
@@ -96,12 +95,10 @@ export default function NavbarProfileButton({ cookie }) {
 
   const decoded = jwt_decode(cookie.value);
   const id = decoded.userId;
-  console.log("log amk ", cookie.value)
 
   useEffect(() => {
     async function getUser() {
       try {
-        // console.log("id falan", id);
         const response = await getUserById(id);
         setUserInfo(response.data);
       } catch (error) {
@@ -171,7 +168,11 @@ export default function NavbarProfileButton({ cookie }) {
                   </button>
                 }
               </div>
-              <Modal cookie={cookie} isOpen={isOpenModal} toggle={toggleModal} />
+              <Modal
+                cookie={cookie}
+                isOpen={isOpenModal}
+                toggle={toggleModal}
+              />
               <NavbarLogoutButton />
             </div>
           )}

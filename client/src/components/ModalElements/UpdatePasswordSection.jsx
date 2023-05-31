@@ -1,26 +1,32 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { use, useEffect, useState } from "react";
 import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 import { useRouter } from "next/navigation";
 import { updatePassword } from "@/app/services/authServices";
-import { getUser } from "@/app/services/userServices";
+import { getUserById } from "@/app/services/userServices";
+import jwt_decode from "jwt-decode";
 
-export default function UpdatePasswordSection() {
+export default function UpdatePasswordSection({ cookie }) {
   const router = useRouter();
   const [password, setPassword] = useState({
     password: "",
     confirmPassword: "",
   });
   const [userInfo, setUserInfo] = useState([]);
+  const decoded = jwt_decode(cookie.value);
+  const id = decoded.userId;
 
-  // const getUserInfo = async () => {
-  //   const res = await getUser(userInfo._id);
-  //   setUserInfo(res.data[0]);
-  // };
-
-  // useEffect(() => {
-  //   getUserInfo();
-  // }, []);
+  useEffect(() => {
+    async function getUser() {
+      try {
+        const response = await getUserById(id);
+        setUserInfo(response.data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getUser();
+  }, [id]);
 
   const handlePassword = (e) => {
     setPassword((prev) => ({ ...prev, [e.target.name]: e.target.value }));

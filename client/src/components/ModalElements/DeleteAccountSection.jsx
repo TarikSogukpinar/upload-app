@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import {
-  getUser,
   userAccountDeleted,
   getUserById,
 } from "@/app/services/userServices";
@@ -13,10 +12,10 @@ import jwt_decode from "jwt-decode";
 export default function DeleteAccountSection({ cookie }) {
   const router = useRouter();
   const [userInfo, setUserInfo] = useState([]);
-  console.log("deleteaccountcookie", cookie.value);
+ 
 
   const decoded = jwt_decode(cookie.value);
-  const id = decoded.userId
+  const id = decoded.userId;
 
   useEffect(() => {
     async function getUserInfo() {
@@ -24,16 +23,15 @@ export default function DeleteAccountSection({ cookie }) {
         const response = await getUserById(id);
         setUserInfo(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
     }
     getUserInfo();
   }, [id]);
 
-
   const handleDeleteAccount = async (e) => {
     e.preventDefault();
-    console.log("deleteaccount", userInfo._id)
+    console.log("deleteaccount", userInfo._id);
     try {
       await userAccountDeleted(userInfo._id)
         .then((res) => {

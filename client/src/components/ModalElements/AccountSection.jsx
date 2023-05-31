@@ -1,9 +1,8 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { getUser, getUserById } from "../../app/services/userServices";
+import { getUserById } from "../../app/services/userServices";
 import jwt_decode from "jwt-decode";
-// import UpdatePasswordSection from "./UpdatePasswordSection";
 
 const UpdatePasswordSection = dynamic(() => import("./UpdatePasswordSection"));
 
@@ -24,20 +23,6 @@ export default function AccountSection({ cookie }) {
     }
     getUser();
   }, [id]);
-  // const getUserInfo = async () => {
-  //   const res = await getUser(
-  //     userInfo.userName,
-  //     userInfo.email,
-  //     userInfo.password,
-  //     userInfo.confirmPassword,
-  //     userInfo.role
-  //   );
-  //   setUserInfo(res.data);
-  // };
-
-  // useEffect(() => {
-  //   getUserInfo();
-  // }, []);
 
   return (
     <div>
@@ -123,7 +108,7 @@ export default function AccountSection({ cookie }) {
                 </svg>
               </summary>
 
-              <UpdatePasswordSection />
+              <UpdatePasswordSection cookie={cookie} />
             </details>
           </div>
         </div>
