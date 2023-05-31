@@ -6,6 +6,8 @@ const router = Router();
 
 router.get("/getUser", verifyToken, userController.getUser);
 
+router.get("/getUserById/:id", verifyToken, userController.getUserById);
+
 router.get(
   "/getUserLocationInformation",
   verifyToken,

@@ -5,6 +5,7 @@ import { cookies } from "next/headers";
 
 export default function Home() {
   const cookieStore = cookies().get("token");
+
   return (
     <div>
       <section className="bg-gray-50">
@@ -23,3 +24,5 @@ export default function Home() {
     </div>
   );
 }
+
+

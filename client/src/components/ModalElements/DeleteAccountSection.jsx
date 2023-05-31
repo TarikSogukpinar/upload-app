@@ -1,21 +1,39 @@
+"use client";
 import React, { useEffect, useState } from "react";
-import { getUser, userAccountDeleted } from "@/app/services/userServices";
+import {
+  getUser,
+  userAccountDeleted,
+  getUserById,
+} from "@/app/services/userServices";
 import { logoutUser } from "@/app/services/authServices";
+import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
+import { useRouter } from "next/navigation";
+import jwt_decode from "jwt-decode";
 
-export default function DeleteAccountSection() {
+export default function DeleteAccountSection({ cookie }) {
+  const router = useRouter();
   const [userInfo, setUserInfo] = useState([]);
-  
-  const getUserInfo = async () => {
-    const res = await getUser(userInfo._id);
-    setUserInfo(res.data[0]);
-  };
+  console.log("deleteaccountcookie", cookie.value);
+
+  const decoded = jwt_decode(cookie.value);
+  const id = decoded.userId
 
   useEffect(() => {
+    async function getUserInfo() {
+      try {
+        const response = await getUserById(id);
+        setUserInfo(response.data);
+      } catch (error) {
+        console.log(error)
+      }
+    }
     getUserInfo();
-  }, []);
+  }, [id]);
+
 
   const handleDeleteAccount = async (e) => {
     e.preventDefault();
+    console.log("deleteaccount", userInfo._id)
     try {
       await userAccountDeleted(userInfo._id)
         .then((res) => {

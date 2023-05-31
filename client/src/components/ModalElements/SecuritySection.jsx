@@ -9,10 +9,11 @@ import { FaWindows, FaApple, FaLinux } from "react-icons/fa";
 
 const DeleteAccountSection = dynamic(() => import("./DeleteAccountSection"));
 
-export default function SecuritySection() {
+export default function SecuritySection({ cookie }) {
   const [userInformation, setUserInformation] = useState({});
   const [userIpInformation, setUserIpInformation] = useState(null);
   const [userOsInformation, setUserOsInformation] = useState({});
+  console.log("security cookie", cookie.value);
 
   const getUserInformation = async () => {
     const res = await getUserLocationInformation();
@@ -129,7 +130,7 @@ export default function SecuritySection() {
                   />
                 </svg>
               </summary>
-              <DeleteAccountSection />
+              <DeleteAccountSection cookie={cookie} />
             </details>
           </div>
         </div>

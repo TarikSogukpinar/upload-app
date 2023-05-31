@@ -13,14 +13,14 @@ export default function UpdatePasswordSection() {
   });
   const [userInfo, setUserInfo] = useState([]);
 
-  const getUserInfo = async () => {
-    const res = await getUser(userInfo._id);
-    setUserInfo(res.data[0]);
-  };
+  // const getUserInfo = async () => {
+  //   const res = await getUser(userInfo._id);
+  //   setUserInfo(res.data[0]);
+  // };
 
-  useEffect(() => {
-    getUserInfo();
-  }, []);
+  // useEffect(() => {
+  //   getUserInfo();
+  // }, []);
 
   const handlePassword = (e) => {
     setPassword((prev) => ({ ...prev, [e.target.name]: e.target.value }));

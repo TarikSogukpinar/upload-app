@@ -1,6 +1,7 @@
 import "./globals.css";
 import Navbar from "./navbar.jsx";
 import Footer from "./footer.jsx";
+import { cookies } from "next/headers";
 
 export const metadata = {
   title: "Upload App",
@@ -19,3 +20,4 @@ export default function RootLayout({ children }) {
     </html>
   );
 }
+

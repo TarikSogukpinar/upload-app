@@ -7,6 +7,7 @@ import { loginUser } from "@/app/services/authServices";
 import { Toaster } from "react-hot-toast";
 import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
+
 export default function LoginPage() {
   const router = useRouter();
 
@@ -15,6 +16,7 @@ export default function LoginPage() {
   const [loginValues, setLoginValues] = useState({
     email: "",
     password: "",
+    tokens: "",
   });
 
   const handleLogin = (e) => {
@@ -25,12 +27,18 @@ export default function LoginPage() {
     e.preventDefault();
     setLoading(true);
     try {
-      await loginUser(loginValues.email, loginValues.password)
+      await loginUser(
+        loginValues.email,
+        loginValues.password,
+        loginValues.tokens
+      )
         .then((res) => {
           if (res.error) {
             return notifyError(error.response.data.message);
           }
+        
           notifySuccess("Login Successfull");
+         
           setTimeout(() => {
             router.push("/home");
             router.refresh();

@@ -31,7 +31,11 @@ export default async function Navbar() {
           </div>
 
           <div className="mt-4 flex flex-col gap-8 sm:mt-0 sm:flex-row sm:items-center">
-            {!cookieStore ? <NavbarLoginButton /> : <NavbarProfileButton />}
+            {!cookieStore ? (
+              <NavbarLoginButton />
+            ) : (
+              <NavbarProfileButton cookie={cookieStore} />
+            )}
           </div>
         </div>
       </div>

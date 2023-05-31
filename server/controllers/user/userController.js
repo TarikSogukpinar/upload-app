@@ -18,11 +18,22 @@ const getUser = async (req, res) => {
   }
 };
 
+const getUserById = async (req, res) => {
+  const { id } = req.params;
+  try {
+    const user = await User.findById(id);
+    res.json(user);
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({ error: true, message: error.message });
+  }
+};
+
 const userAccountDeleted = async (req, res) => {
   try {
     const { id } = req.params;
     const user = await User.findByIdAndDelete(id);
-    
+
     if (!user) {
       return res.status(404).json({ error: true, message: "User not found" });
     }
@@ -83,4 +94,5 @@ export default {
   getUserLocationInformation,
   getUserOperatingSystemType,
   userAccountDeleted,
+  getUserById,
 };
