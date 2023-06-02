@@ -1,7 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { getUser, getUserById } from "../../app/services/userServices";
+import { getUserById } from "../../app/services/userServices";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FiSettings } from "react-icons/fi";
 import { BsShieldCheck } from "react-icons/bs";
@@ -93,20 +93,32 @@ export default function NavbarProfileButton({ cookie }) {
   const [isOpen, setIsOpen] = useState(false);
   const [userInfo, setUserInfo] = useState([]);
 
-  const decoded = jwt_decode(cookie.value);
+  const token = cookie.value;
+  const decoded = jwt_decode(token);
   const id = decoded.userId;
 
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const response = await getUserById(id);
-        setUserInfo(response.data);
-      } catch (error) {
-        console.log(error.message);
-      }
+  const getUser = async () => {
+    try {
+      const res = await getUserById(id)
+        .then((res) => {
+          if (res.error) {
+            return notifyError(error.res.data.message);
+          }
+          setUserInfo(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          notifyError(error.res.data.message);
+        });
+    } catch (error) {
+      console.log(error);
+      notifyError(error.res.data.message);
     }
+  };
+
+  useEffect(() => {
     getUser();
-  }, [id]);
+  }, []);
 
   const toggleModal = () => {
     setIsOpenModal(!isOpenModal);
