@@ -55,7 +55,7 @@ export default function HomeMainSection() {
           <div className="mx-auto max-w-3xl">
             <header className="text-center">
               <h1 className="text-xl font-bold text-gray-900 sm:text-3xl">
-                Your Cart
+                Your Files
               </h1>
             </header>
 
