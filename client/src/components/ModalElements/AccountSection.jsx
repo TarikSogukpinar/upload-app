@@ -3,14 +3,15 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { getUserById } from "../../app/services/userServices";
 import jwt_decode from "jwt-decode";
-import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
+import { notifyError } from "@/app/utils/notifyUtils";
 
 const UpdatePasswordSection = dynamic(() => import("./UpdatePasswordSection"));
 
 export default function AccountSection({ cookie }) {
   const [userInfo, setUserInfo] = useState([]);
-  // console.log("account section", cookie.value);
-  const decoded = jwt_decode(cookie.value);
+  
+  const token = cookie.value;
+  const decoded = jwt_decode(token);
   const id = decoded.userId;
 
   const getUser = async () => {

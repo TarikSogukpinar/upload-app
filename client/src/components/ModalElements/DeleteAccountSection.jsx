@@ -10,7 +10,8 @@ export default function DeleteAccountSection({ cookie }) {
   const router = useRouter();
   const [userInfo, setUserInfo] = useState([]);
 
-  const decoded = jwt_decode(cookie.value);
+  const token = cookie.value;
+  const decoded = jwt_decode(token);
   const id = decoded.userId;
 
   const getUser = async () => {
