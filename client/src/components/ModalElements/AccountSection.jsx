@@ -3,26 +3,38 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { getUserById } from "../../app/services/userServices";
 import jwt_decode from "jwt-decode";
+import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 
 const UpdatePasswordSection = dynamic(() => import("./UpdatePasswordSection"));
 
 export default function AccountSection({ cookie }) {
   const [userInfo, setUserInfo] = useState([]);
-  console.log("account section", cookie.value);
+  // console.log("account section", cookie.value);
   const decoded = jwt_decode(cookie.value);
   const id = decoded.userId;
 
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const response = await getUserById(id);
-        setUserInfo(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+  const getUser = async () => {
+    try {
+      const res = await getUserById(id)
+        .then((res) => {
+          if (res.error) {
+            return notifyError(error.res.data.message);
+          }
+          setUserInfo(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          notifyError(error.res.data.message);
+        });
+    } catch (error) {
+      console.log(error);
+      notifyError(error.res.data.message);
     }
+  };
+
+  useEffect(() => {
     getUser();
-  }, [id]);
+  });
 
   return (
     <div>

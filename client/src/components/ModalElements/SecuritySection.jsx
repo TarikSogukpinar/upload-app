@@ -13,7 +13,6 @@ export default function SecuritySection({ cookie }) {
   const [userInformation, setUserInformation] = useState({});
   const [userIpInformation, setUserIpInformation] = useState(null);
   const [userOsInformation, setUserOsInformation] = useState({});
-  console.log("security cookie", cookie.value);
 
   const getUserInformation = async () => {
     const res = await getUserLocationInformation();

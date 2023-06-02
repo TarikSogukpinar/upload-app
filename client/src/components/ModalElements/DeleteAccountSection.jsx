@@ -1,9 +1,6 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import {
-  userAccountDeleted,
-  getUserById,
-} from "@/app/services/userServices";
+import { userAccountDeleted, getUserById } from "@/app/services/userServices";
 import { logoutUser } from "@/app/services/authServices";
 import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 import { useRouter } from "next/navigation";
@@ -12,38 +9,47 @@ import jwt_decode from "jwt-decode";
 export default function DeleteAccountSection({ cookie }) {
   const router = useRouter();
   const [userInfo, setUserInfo] = useState([]);
- 
 
   const decoded = jwt_decode(cookie.value);
   const id = decoded.userId;
 
-  useEffect(() => {
-    async function getUserInfo() {
-      try {
-        const response = await getUserById(id);
-        setUserInfo(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+  const getUser = async () => {
+    try {
+      const res = await getUserById(id)
+        .then((res) => {
+          if (res.error) {
+            return notifyError(error.res.data.message);
+          }
+          setUserInfo(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          notifyError(error.res.data.message);
+        });
+    } catch (error) {
+      console.log(error);
+      notifyError(error.res.data.message);
     }
-    getUserInfo();
-  }, [id]);
+  };
+
+  useEffect(() => {
+    getUser();
+  });
 
   const handleDeleteAccount = async (e) => {
     e.preventDefault();
-    console.log("deleteaccount", userInfo._id);
     try {
       await userAccountDeleted(userInfo._id)
         .then((res) => {
           if (res.error) {
             return notifyError(res.data.message);
           }
-
           setTimeout(() => {
             notifySuccess("Account Deleted Successfully");
-            logoutUser();
+            // logoutUser();
             router.push("/");
-          }, 3000);
+            router.refresh();
+          }, 1000);
         })
         .catch((error) => {
           console.error(error.message);

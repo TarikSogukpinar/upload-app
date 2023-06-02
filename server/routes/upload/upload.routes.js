@@ -6,9 +6,9 @@ const router = Router();
 
 router.post(
   "/uploadFile",
-  verifyToken,
   fileController.upload.single("file"),
-  fileController.uplodFile
+  fileController.uploadFile,
+  verifyToken
 );
 
 export default router;

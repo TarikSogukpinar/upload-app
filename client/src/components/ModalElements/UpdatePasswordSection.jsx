@@ -4,6 +4,7 @@ import { notifySuccess, notifyError } from "@/app/utils/notifyUtils";
 import { useRouter } from "next/navigation";
 import { updatePassword } from "@/app/services/authServices";
 import { getUserById } from "@/app/services/userServices";
+import { logoutUser } from "@/app/services/authServices";
 import jwt_decode from "jwt-decode";
 
 export default function UpdatePasswordSection({ cookie }) {
@@ -16,17 +17,28 @@ export default function UpdatePasswordSection({ cookie }) {
   const decoded = jwt_decode(cookie.value);
   const id = decoded.userId;
 
-  useEffect(() => {
-    async function getUser() {
-      try {
-        const response = await getUserById(id);
-        setUserInfo(response.data);
-      } catch (error) {
-        console.log(error);
-      }
+  const getUser = async () => {
+    try {
+      const res = await getUserById(id)
+        .then((res) => {
+          if (res.error) {
+            return notifyError(error.res.data.message);
+          }
+          setUserInfo(res.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          notifyError(error.res.data.message);
+        });
+    } catch (error) {
+      console.log(error);
+      notifyError(error.res.data.message);
     }
+  };
+
+  useEffect(() => {
     getUser();
-  }, [id]);
+  });
 
   const handlePassword = (e) => {
     setPassword((prev) => ({ ...prev, [e.target.name]: e.target.value }));
@@ -44,11 +56,12 @@ export default function UpdatePasswordSection({ cookie }) {
           if (res.error) {
             return notifyError(res.data.message);
           }
-
           setTimeout(() => {
             notifySuccess("Password Updated Successfully");
+
             router.push("/");
-          }, 3000);
+            router.refresh();
+          }, 1000);
         })
         .catch((error) => {
           console.error(error.message);

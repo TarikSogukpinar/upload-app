@@ -1,8 +1,5 @@
 import multer from "multer";
 import path from "path";
-import fs from "fs";
-import axios from "axios";
-import FormData from "form-data";
 import slugify from "slugify";
 import { v4 as uuidv4 } from "uuid";
 
@@ -57,7 +54,7 @@ const upload = multer({
   },
 });
 
-const uplodFile = async (req, res, next) => {
+const uploadFile = async (req, res) => {
   try {
     if (!req.file) {
       return res
@@ -65,35 +62,11 @@ const uplodFile = async (req, res, next) => {
         .json({ error: true, message: "Please upload a file" });
     }
 
-    const file = fs.createReadStream(req.file.path);
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const result = await axios.post(
-      `${process.env.VIRUS_TOTAL_API_URL}`,
-      formData,
-      {
-        headers: {
-          "x-apikey": process.env.VIRUS_TOTAL_API_KEY,
-          ...formData.getHeaders(),
-        },
-      }
-    );
-
-    if (result.status === 200) {
-      res.status(200).json({ error: false, message: "File is safe" });
-    }
-
-    if (result.status === 400) {
-      fs.unlinkSync(req.file.path); //delete files
-      res
-        .status(400)
-        .json({ error: true, message: "Someting went wrong files deleted!" });
-    }
+    res.status(200).json({ error: false, message: "File is uploaded!" });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });
   }
 };
 
-export default { uplodFile, upload };
+export default { uploadFile, upload };
