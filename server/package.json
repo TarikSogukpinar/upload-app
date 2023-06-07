@@ -1,7 +1,7 @@
 {
   "name": "upload-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Platform for users to upload and manage files. Built using Node.js and Next.js",
   "main": "index.js",
   "type": "module",
   "scripts": {
