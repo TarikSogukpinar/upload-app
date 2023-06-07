@@ -39,6 +39,7 @@ export default function HomeMainSection() {
         });
     } catch (error) {
       console.log(error.message);
+      notifyError(error.message);
     }
   };
 
@@ -94,7 +95,6 @@ export default function HomeMainSection() {
                       <input
                         type="number"
                         min="1"
-                        value="1"
                         id="Line1Qty"
                         className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                       />
@@ -154,7 +154,6 @@ export default function HomeMainSection() {
                       <input
                         type="number"
                         min="1"
-                        value="1"
                         id="Line2Qty"
                         className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                       />
@@ -214,7 +213,6 @@ export default function HomeMainSection() {
                       <input
                         type="number"
                         min="1"
-                        value="1"
                         id="Line3Qty"
                         className="h-8 w-12 rounded border-gray-200 bg-gray-50 p-0 text-center text-xs text-gray-600 [-moz-appearance:_textfield] focus:outline-none [&::-webkit-inner-spin-button]:m-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:m-0 [&::-webkit-outer-spin-button]:appearance-none"
                       />
@@ -277,7 +275,7 @@ export default function HomeMainSection() {
           name="small-file-input"
           onChange={handleOnChange}
           id="small-file-input"
-          class="block mb-1 w-full border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 
+          className="block mb-1 w-full border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 
           file:bg-transparent file:border-0
         file:bg-gray-100 file:mr-4
           file:py-2 file:px-4

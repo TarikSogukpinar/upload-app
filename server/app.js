@@ -34,6 +34,10 @@ app.use(helmet());
 app.use(compression());
 app.use(cors(corsOption));
 
+app.get("/check", (req, res) => {
+  res.json("Check is running");
+});
+
 initRoutes(app);
 initLimit(app);
 await connectionDatabase();
