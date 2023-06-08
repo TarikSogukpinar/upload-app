@@ -25,11 +25,11 @@ afterEach(async () => {
 describe('Register', () => {
   it('should create a new user and return 200 status', async () => {
     const res = await request(app).post('/api/auth/register').send({
-      firstName: 'testuser',
-      lastName: 'testuserLastName',
-      email: 'testuser@example.com',
-      password: 'testWarp123password',
-      confirmPassword: 'testWarp123password',
+      firstName: 'exampleuserFirstName',
+      lastName: 'exampleuserLastName',
+      email: 'example@example.com',
+      password: 'testTarik123password',
+      confirmPassword: 'testTarik123password',
     })
 
     expect(res.statusCode).toEqual(200)
@@ -39,8 +39,8 @@ describe('Register', () => {
 describe('Login', () => {
   it('should login user and return 200 status', async () => {
     const res = await request(app).post('/api/auth/login').send({
-      email: 'hanlueee@gmail.com',
-      password: 'Warp123',
+      email: 'example@gmail.com',
+      password: 'Tarik123',
     })
 
     expect(res.statusCode).toEqual(200)

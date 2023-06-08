@@ -63,7 +63,6 @@ export default function HomeMainSection() {
             <div className="mt-8">
               <ul className="space-y-4">
                 <li className="flex items-center gap-4">
-               
                   <div>
                     <h3 className="text-sm text-gray-900">Example.pdf</h3>
 
@@ -72,8 +71,6 @@ export default function HomeMainSection() {
                         <dt className="inline">Type: PDF</dt>
                         <dd className="inline">Size: 5mb</dd>
                       </div>
-
-                    
                     </dl>
                   </div>
 
@@ -114,12 +111,11 @@ export default function HomeMainSection() {
                 </li>
 
                 <li className="flex items-center gap-4">
-               
                   <div>
                     <h3 className="text-sm text-gray-900">Example.pdf</h3>
 
                     <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                    <div>
+                      <div>
                         <dt className="inline">Type: PDF</dt>
                         <dd className="inline">Size: 5mb</dd>
                       </div>
@@ -163,13 +159,11 @@ export default function HomeMainSection() {
                 </li>
 
                 <li className="flex items-center gap-4">
-                 
-
                   <div>
                     <h3 className="text-sm text-gray-900">Example.pdf</h3>
 
                     <dl className="mt-0.5 space-y-px text-[10px] text-gray-600">
-                    <div>
+                      <div>
                         <dt className="inline">Type: PDF</dt>
                         <dd className="inline">Size: 5mb</dd>
                       </div>
@@ -217,23 +211,8 @@ export default function HomeMainSection() {
                 <div className="w-screen max-w-lg space-y-4">
                   <dl className="space-y-0.5 text-sm text-gray-700">
                     <div className="flex justify-between">
-                      <dt>Subtotal</dt>
-                      <dd>£250</dd>
-                    </div>
-
-                    <div className="flex justify-between">
-                      <dt>VAT</dt>
-                      <dd>£25</dd>
-                    </div>
-
-                    <div className="flex justify-between">
-                      <dt>Discount</dt>
-                      <dd>-£20</dd>
-                    </div>
-
-                    <div className="flex justify-between !text-base font-medium">
-                      <dt>Total</dt>
-                      <dd>£200</dd>
+                      <dt>Total Files</dt>
+                      <dd>1</dd>
                     </div>
                   </dl>
                 </div>
