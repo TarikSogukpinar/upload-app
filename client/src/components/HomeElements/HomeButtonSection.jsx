@@ -5,8 +5,7 @@ export default function HomeButton() {
   return (
     <div>
       <p className="mt-4 sm:text-xl/relaxed">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt illo
-        tenetur fuga ducimus numquam ea!
+        The fastest way to upload your files
       </p>
 
       <div className="mt-8 flex flex-wrap justify-center gap-4">

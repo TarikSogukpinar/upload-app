@@ -78,14 +78,13 @@ export default function SecuritySection({ cookie }) {
                   type="button"
                   className="antialiased flex rounded-lg bg-gray-50 px-4 sm:px-8 py-1 text-md sm:text-lg font-bold text-dark transition  active:bg-indigo-500 mt-2 sm:mt-5 "
                 >
-                  Ip Address:{" "}
-                  <span className="font-bold"> {userIpInformation}</span>
+                  Ip : <span className="font-bold"> {userIpInformation}</span>
                 </button>
                 <button
                   type="button"
                   className="antialiased flex  rounded-lg bg-gray-50 px-4 sm:px-8 py-1 text-md sm:text-lg font-bold text-dark transition  active:bg-indigo-500 mt-2 sm:mt-5 "
                 >
-                  Time Zone :{" "}
+                  Time :{" "}
                   <span className="font-bold"> {userInformation.timezone}</span>
                 </button>
                 <button
@@ -94,19 +93,19 @@ export default function SecuritySection({ cookie }) {
                 >
                   Operating System
                   <span className="font-bold ml-3 mb-1">
-                  {userOsInformation.getUserOperatingSystemType ===
-                  "Windows" ? (
-                    <FaWindows fontSize={"30"} />
-                  ) : userOsInformation.getUserOperatingSystemType ===
-                    "MacOS" ? (
-                    <FaApple fontSize={"30"} />
-                  ) : userOsInformation.getUserOperatingSystemType ===
-                    "Linux" ? (
-                    <FaLinux fontSize={"30"} />
-                  ) : (
-                    userOsInformation.getUserOperatingSystemType
-                  )}
-                </span>
+                    {userOsInformation.getUserOperatingSystemType ===
+                    "Windows" ? (
+                      <FaWindows fontSize={"30"} />
+                    ) : userOsInformation.getUserOperatingSystemType ===
+                      "MacOS" ? (
+                      <FaApple fontSize={"30"} />
+                    ) : userOsInformation.getUserOperatingSystemType ===
+                      "Linux" ? (
+                      <FaLinux fontSize={"30"} />
+                    ) : (
+                      userOsInformation.getUserOperatingSystemType
+                    )}
+                  </span>
                 </button>
               </div>
               <details className="group [&_summary::-webkit-details-marker]:hidden">

@@ -75,7 +75,7 @@ export default function AccountSection({ cookie }) {
                 type="button"
                 className="antialiased flex  rounded-lg hover:bg-gray-50 px-6 sm:px-8 py-1 text-md sm:text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
               >
-                Email addresses : {userInfo.email}
+                Email : {userInfo.email}
               </button>
               <button
                 type="button"
@@ -93,7 +93,7 @@ export default function AccountSection({ cookie }) {
                 type="button"
                 className="antialiased flex  rounded-lg bg-gray-50 px-6 sm:px-8 py-1 text-md sm:text-lg font-bold text-dark transition  active:bg-indigo-500 mt-5 "
               >
-                Created Date : {userInfo.createdAt}
+                Created : {userInfo.createdAt}
               </button>
             </div>
           </div>
