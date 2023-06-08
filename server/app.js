@@ -13,7 +13,7 @@ import connectionDatabase from "./helpers/connectionDatabase/connectionDatabase.
 import { initRoutes } from "./routes/index.routes.js";
 import initLimit from "./helpers/limiter/rateLimiter.js";
 import corsOption from "./helpers/cors/corsOptions.js";
-
+import { errorHandler } from "./middleware/errorHandler/errorHandler.js";
 
 const envFile =
   process.env.NODE_ENV === "production"
@@ -33,6 +33,7 @@ app.use(xss());
 app.use(helmet());
 app.use(compression());
 app.use(cors(corsOption));
+app.use(errorHandler);
 
 app.get("/check", (req, res) => {
   res.json("Check is running");

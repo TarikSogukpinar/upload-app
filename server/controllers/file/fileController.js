@@ -55,18 +55,13 @@ const upload = multer({
 });
 
 const uploadFile = async (req, res) => {
-  try {
-    if (!req.file) {
-      return res
-        .status(500)
-        .json({ error: true, message: "Please upload a file" });
-    }
-
-    res.status(200).json({ error: false, message: "File is uploaded!" });
-  } catch (error) {
-    console.log(error);
-    return res.status(500).json({ error: true, message: error.message });
+  if (!req.file) {
+    return res
+      .status(500)
+      .json({ error: true, message: "Please upload a file" });
   }
+
+  res.status(200).json({ error: false, message: "File is uploaded!" });
 };
 
 export default { uploadFile, upload };
