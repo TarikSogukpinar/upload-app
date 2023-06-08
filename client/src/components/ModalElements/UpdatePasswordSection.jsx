@@ -75,17 +75,17 @@ export default function UpdatePasswordSection({ cookie }) {
   };
 
   return (
-    <div className="mt-4 px-4 leading-relaxed text-gray-700 text-lg">
+    <div className="mt-4 px-2 sm:px-4 leading-relaxed text-gray-700 text-sm sm:text-lg">
       {/* Update User Password */}
       <form action="" onSubmit={handleUpdatePasswordSubmit}>
         <div className="w-full flex justify-start mt-4">
-          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-2 sm:gap-4 sm:grid-cols-2">
             <div>
               <label className="antialiased sr-only" htmlFor="email">
                 Password
               </label>
               <input
-                className="w-full rounded-lg border-gray-200 p-3 text-lg"
+                className="w-full rounded-lg border-gray-200 p-2 sm:p-3 text-sm sm:text-lg"
                 placeholder="Password"
                 type="password"
                 id="password"
@@ -101,7 +101,7 @@ export default function UpdatePasswordSection({ cookie }) {
                 Confirm Password
               </label>
               <input
-                className="w-full rounded-lg border-gray-200 p-3 text-lg"
+                className="w-full rounded-lg border-gray-200 p-2 sm:p-3 text-sm sm:text-lg"
                 placeholder="Confirm Password"
                 type="password"
                 id="confirmPassword"
@@ -113,7 +113,7 @@ export default function UpdatePasswordSection({ cookie }) {
             </div>
             <button
               type="submit"
-              className="antialiased inline-block rounded-lg bg-indigo-900 px-5 py-3  text-sm font-medium text-white justify-end"
+              className="antialiased inline-block rounded-lg bg-indigo-900 px-3 sm:px-5 py-2 sm:py-3 text-xs sm:text-sm font-medium text-white justify-end"
             >
               Update
             </button>

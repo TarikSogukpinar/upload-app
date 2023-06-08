@@ -47,37 +47,37 @@ const Modal = ({ isOpen, toggle, cookie }) => {
         role="dialog"
         aria-modal="true"
       >
-        <div className="antialiased bg-white rounded-xl text-left overflow-hidden shadow-xl  transform transition-all sm:w-2/4 h-4/5 flex flex-col sm:flex-row">
-          <div className="sm:w-1/3 bg-gray-50 border-collapse p-4 overflow-auto rounded-sm ">
+        <div className="antialiased bg-white rounded-xl text-left overflow-hidden shadow-xl transform transition-all w-11/12 sm:w-3/4 lg:w-1/2 xl:w-2/4 h-4/5 flex flex-col sm:flex-row">
+          <div className="sm:w-1/3 bg-gray-50 border-collapse p-2 sm:p-4 overflow-auto rounded-sm ">
             <ul>
               {Object.keys(menuItems).map((item) => (
                 <button
                   key={item}
-                  className="antialiased flex w-full rounded-lg bg-gray-200 px-8 py-3 text-sm font-medium text-dark transition hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500 mt-5"
+                  className="antialiased flex w-full rounded-lg bg-gray-200 px-3 sm:px-8 py-1 sm:py-3 text-xs sm:text-sm font-medium text-dark transition hover:shadow-xl focus:outline-none focus:ring active:bg-indigo-500 mt-2 sm:mt-5"
                   onClick={() => handleMenuItemClick(item)}
                 >
-                  <div className="antialiased mt-1 mr-1 text-lg">
+                  <div className="antialiased mt-1 mr-1 text-sm sm:text-lg">
                     {menuItems[item].icon}
                   </div>
 
-                  <div className="antialiased text-lg">
+                  <div className="antialiased text-sm sm:text-lg">
                     {item.charAt(0).toUpperCase() + item.slice(1)}
                   </div>
                 </button>
               ))}
             </ul>
           </div>
-          <div className="w-full sm:w-2/3 p-4 relative bg-gray-50 ">
+          <div className="w-full sm:w-2/3 p-2 sm:p-4 relative bg-gray-50 ">
             <button
               type="button"
-              className="absolute top-2 right-2 inline-flex rounded-sm border border-transparent shadow-sm px-2 py-1  text-base font-medium  hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 "
+              className="absolute top-2 right-2 inline-flex rounded-sm border border-transparent shadow-sm px-1 sm:px-2 py-1 text-xs sm:text-base font-medium hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 "
               onClick={toggle}
             >
               <div className="text-black">X</div>
             </button>
 
             <div>
-              <h1 className="text-sm text-gray-900">
+              <h1 className="text-xs sm:text-sm text-gray-900">
                 {menuItems[activeMenuItem]?.component}
               </h1>
             </div>
