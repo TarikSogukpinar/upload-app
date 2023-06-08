@@ -2,12 +2,13 @@ import User from '../../models/User.js'
 import { getIpInformation } from '../../helpers/utils/locations.js'
 import { getLocationInformation } from '../../helpers/utils/ipify.js'
 import os from 'os'
+import { StatusCodes } from 'http-status-codes'
 
 const getUser = async (req, res) => {
   const user = await User.find(req.user.id)
 
   if (user === null || user === undefined) {
-    return res.status(404).json({ error: true, message: 'User not found' })
+    return res.status(StatusCodes.NOT_FOUND).json({ error: true, message: 'User not found' })
   }
 
   res.send(user)
@@ -25,17 +26,17 @@ const userAccountDeleted = async (req, res) => {
   const user = await User.findByIdAndDelete(id)
 
   if (!user) {
-    return res.status(404).json({ error: true, message: 'User not found' })
+    return res.status(StatusCodes.NOT_FOUND).json({ error: true, message: 'User not found' })
   }
 
-  return res.status(200).json({ error: false, message: 'User deleted' })
+  return res.status(StatusCodes.OK).json({ error: false, message: 'User deleted' })
 }
 
 const getUserLocationInformation = async (req, res) => {
   const getIp = await getIpInformation()
   const getLocation = await getLocationInformation(getIp)
 
-  return res.status(200).json({ error: false, getLocation, getIp })
+  return res.status(StatusCodes.OK).json({ error: false, getLocation, getIp })
 }
 
 const getUserOperatingSystemType = async (req, res) => {
@@ -46,7 +47,7 @@ const getUserOperatingSystemType = async (req, res) => {
     getUserOperatingSystemType == undefined
   ) {
     return res
-      .status(404)
+      .status(StatusCodes.NOT_FOUND)
       .json({ error: true, message: 'User operating system type not found' })
   }
 
@@ -63,7 +64,9 @@ const getUserOperatingSystemType = async (req, res) => {
     getUserOperatingSystemType = 'Linux'
   }
 
-  return res.status(200).json({ error: false, getUserOperatingSystemType })
+  return res
+    .status(StatusCodes.OK)
+    .json({ error: false, getUserOperatingSystemType })
 }
 
 export default {

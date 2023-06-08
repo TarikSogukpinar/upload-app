@@ -6,11 +6,4 @@ export function initRoutes(app) {
   app.use('/api/auth', authRoutes)
   app.use('/api/user', userRoutes)
   app.use('/api/upload', uploadRoutes)
-
-  app.all('*', (res) => {
-    res.status(404).json({
-      error: true,
-      message: 'Route not found',
-    })
-  })
 }

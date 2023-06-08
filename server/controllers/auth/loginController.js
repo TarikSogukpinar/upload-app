@@ -3,13 +3,14 @@ import bcrypt from 'bcryptjs'
 import loginValidationSchema from '../../validations/authValidations/loginValidationSchema.js'
 import { cookieOptions } from '../../helpers/tokens/cookieOptions.js'
 import { generateToken } from '../../helpers/tokens/generateToken.js'
+import { StatusCodes } from 'http-status-codes'
 
 const loginUser = async (req, res) => {
   const { error } = loginValidationSchema(req.body)
 
   if (error) {
     return res
-      .status(400)
+      .status(StatusCodes.BAD_REQUEST)
       .json({ error: true, message: error.details[0].message })
   }
 
@@ -17,7 +18,7 @@ const loginUser = async (req, res) => {
 
   if (!user) {
     return res
-      .status(400)
+      .status(StatusCodes.BAD_REQUEST)
       .json({ error: true, message: 'Email or password is wrong' })
   }
 
@@ -28,7 +29,7 @@ const loginUser = async (req, res) => {
 
   if (!isPasswordCorrect) {
     return res
-      .status(400)
+      .status(StatusCodes.BAD_REQUEST)
       .json({ error: true, message: 'Email or password is wrong' })
   }
 
@@ -36,9 +37,12 @@ const loginUser = async (req, res) => {
 
   res.cookie('token', token, cookieOptions)
 
-  return res
-    .status(200)
-    .json({ data: user, message: 'Login Succesfully!', tokens: token })
+  return res.status(StatusCodes.OK).json({
+    error: false,
+    data: user,
+    message: 'Login Succesfully!',
+    tokens: token,
+  })
 }
 
 export default { loginUser }

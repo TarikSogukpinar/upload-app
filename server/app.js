@@ -14,6 +14,7 @@ import { initRoutes } from './routes/index.routes.js'
 import initLimit from './helpers/limiter/rateLimiter.js'
 import corsOption from './helpers/cors/corsOptions.js'
 import { errorHandler } from './middleware/errorHandler/errorHandler.js'
+import notFound from './errors/notFound.js'
 
 const envFile =
   process.env.NODE_ENV === 'production' ? '.env.production' : '.env.development'
@@ -31,15 +32,13 @@ app.use(xss())
 app.use(helmet())
 app.use(compression())
 app.use(cors(corsOption))
-app.use(errorHandler)
-
-app.get('/health-check', (req, res) => {
-  res.json('Route is working!')
-})
 
 initRoutes(app)
 initLimit(app)
 await connectionDatabase()
+
+app.use(errorHandler)
+app.use(notFound)
 
 export const PORT = process.env.PORT || 5000
 export default app

@@ -1,6 +1,7 @@
 import User from '../../models/User.js'
 import bcrypt from 'bcryptjs'
 import updatePasswordValidationSchema from '../../validations/authValidations/updatePasswordValidationSchema.js'
+import { StatusCodes } from 'http-status-codes'
 
 const updatePassword = async (req, res) => {
   const { password, confirmPassword } = req.body
@@ -10,7 +11,7 @@ const updatePassword = async (req, res) => {
 
   if (error) {
     return res
-      .status(400)
+      .status(StatusCodes.BAD_REQUEST)
       .json({ error: true, message: error.details[0].message })
   }
   const saltPassword = await bcrypt.genSaltSync(10)
@@ -23,7 +24,9 @@ const updatePassword = async (req, res) => {
   const user = await User.findById(id)
 
   if (!user) {
-    return res.status(404).json({ error: true, message: error.message })
+    return res
+      .status(StatusCodes.NOT_FOUND)
+      .json({ error: true, message: error.message })
   }
 
   const oldPassword = await bcrypt.compareSync(password, user.password)
@@ -33,14 +36,14 @@ const updatePassword = async (req, res) => {
   )
 
   if (oldPassword) {
-    return res.status(400).json({
+    return res.status(StatusCodes.BAD_REQUEST).json({
       error: true,
       message: 'New password cannot be the same as your old password',
     })
   }
 
   if (oldConfirmPassword) {
-    return res.status(400).json({
+    return res.status(StatusCodes.BAD_REQUEST).json({
       error: true,
       message: 'New password cannot be the same as your old password',
     })
@@ -54,7 +57,7 @@ const updatePassword = async (req, res) => {
     { new: true },
   )
 
-  res.status(200).json({
+  res.status(StatusCodes.OK).json({
     error: false,
     data: `User id: '${data._id}'`,
     message: `Password is updated for ${data.userName}`,

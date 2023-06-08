@@ -2,6 +2,7 @@ import multer from 'multer'
 import path from 'path'
 import slugify from 'slugify'
 import { v4 as uuidv4 } from 'uuid'
+import { StatusCodes } from 'http-status-codes'
 
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
@@ -57,11 +58,11 @@ const upload = multer({
 const uploadFile = async (req, res) => {
   if (!req.file) {
     return res
-      .status(500)
+      .status(StatusCodes.NOT_ACCEPTABLE)
       .json({ error: true, message: 'Please upload a file' })
   }
 
-  res.status(200).json({ error: false, message: 'File is uploaded!' })
+  res.status(StatusCodes.OK).json({ error: false, message: 'File is uploaded!' })
 }
 
 export default { uploadFile, upload }

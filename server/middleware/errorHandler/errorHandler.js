@@ -1,6 +1,7 @@
-import { AppError } from '../../error/AppError.js'
+import { AppError } from '../../errors/AppError.js'
 
-export const errorHandler = (error, req, res) => {
+// eslint-disable-next-line no-unused-vars
+export const errorHandler = (error, req, res, next) => {
   if (error.name === 'ValidationError') {
     return res.status(400).send({
       type: 'ValidationError',

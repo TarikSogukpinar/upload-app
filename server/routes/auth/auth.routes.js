@@ -16,5 +16,8 @@ router.put(
   verifyToken,
   tryCatch(updatePasswordController.updatePassword),
 )
+router.get('/health-check', (req, res) => {
+  res.json('Route is working!')
+})
 
 export default router
