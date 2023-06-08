@@ -1,4 +1,5 @@
 import ipify from 'ipify'
+import StatusCode from 'http-status-codes'
 
 export const getIpInformation = async (req, res) => {
   try {
@@ -6,7 +7,7 @@ export const getIpInformation = async (req, res) => {
 
     if (getIpInformation === undefined || getIpInformation === null) {
       return res
-        .status(400)
+        .status(StatusCode.BAD_REQUEST)
         .json({ error: true, message: 'Ip address is not found' })
     }
 

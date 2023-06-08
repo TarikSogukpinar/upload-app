@@ -1,11 +1,12 @@
 import jwt from 'jsonwebtoken'
+import StatusCode from 'http-status-codes'
 
 const verifyToken = (req, res, next) => {
   const token = req.cookies.token
 
   if (!token) {
     return res
-      .status(403)
+      .status(StatusCode.UNAUTHORIZED)
       .json({ error: true, message: 'Invalid Authentication.' })
   }
   try {
@@ -15,7 +16,9 @@ const verifyToken = (req, res, next) => {
     next()
   } catch (error) {
     console.log(error)
-    return res.status(500).json({ error: true, message: error.message })
+    return res
+      .status(StatusCode.INTERNAL_SERVER_ERROR)
+      .json({ error: true, message: error.message })
   }
 }
 

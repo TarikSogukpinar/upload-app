@@ -1,4 +1,5 @@
 import geoip from 'geoip-lite'
+import StatusCode from 'http-status-codes'
 
 export const getLocationInformation = async (ip, res) => {
   try {
@@ -7,6 +8,8 @@ export const getLocationInformation = async (ip, res) => {
     return getLocationInformation
   } catch (error) {
     console.log(error)
-    res.status(500).json({ error: true, message: error.message })
+    res
+      .status(StatusCode.INTERNAL_SERVER_ERROR)
+      .json({ error: true, message: error.message })
   }
 }
