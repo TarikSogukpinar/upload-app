@@ -1,18 +1,41 @@
 import { NextResponse } from "next/server";
+import { verifyJwtToken } from "@/app/utils/auth";
 
-export default async function middleware(req) {
-  const verify = req.cookies.get("token");
+const AUTH_PAGES = ["/login", "/register"];
 
-  if (!verify && req.nextUrl.pathname.startsWith("/profile")) {
-    return NextResponse.rewrite(new URL("/login", req.url));
+const isAuthPages = (url) => AUTH_PAGES.some((page) => page.startsWith(url));
+
+export default async function middleware(request) {
+  const { url, nextUrl, cookies } = request;
+  const { value: token } = cookies.get("token") ?? { value: null };
+
+  const hasVerifiedToken = token && (await verifyJwtToken(token));
+  const isAuthPageRequested = isAuthPages(nextUrl.pathname);
+
+  if (isAuthPageRequested) {
+    if (!hasVerifiedToken) {
+      const response = NextResponse.next();
+      response.cookies.delete("token");
+      return response;
+    }
+
+    const response = NextResponse.redirect(new URL(`/`, url));
+    return response;
   }
-  if (verify && req.nextUrl.pathname.startsWith("/login")) {
-    return NextResponse.rewrite(new URL("/", req.url));
+
+  if (!hasVerifiedToken) {
+    const searchParams = new URLSearchParams(nextUrl.searchParams);
+    searchParams.set("next", nextUrl.pathname);
+
+    const response = NextResponse.redirect(
+      new URL(`/login?${searchParams}`, url)
+    );
+    response.cookies.delete("token");
+
+    return response;
   }
-  if (verify && req.nextUrl.pathname.startsWith("/register")) {
-    return NextResponse.rewrite(new URL("/", req.url));
-  }
-  if (!verify && req.nextUrl.pathname.startsWith("/home")) {
-    return NextResponse.rewrite(new URL("/", req.url));
-  }
+
+  return NextResponse.next();
 }
+
+export const config = { matcher: ["/login", "/home"] };
