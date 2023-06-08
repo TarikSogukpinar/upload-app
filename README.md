@@ -11,7 +11,7 @@ Platform for users to upload and manage files. Built using Node.js and Next.js
 
 ![App Screenshot](https://i.ibb.co/gD5yrz0/Screenshot-8.png)
 ![App Screenshot](https://i.ibb.co/yY0F7y0/Screenshot-9.png)
-![App Screenshot](https://i.ibb.co/PW5zGFQ/Screenshot-10.png)
+![App Screenshot](https://i.ibb.co/6WSgd7m/8c076596-2251-4b8a-993f-42958ee3f970.png)
 ![App Screenshot](https://i.ibb.co/gtg9FML/Screenshot-3.png)
 ![App Screenshot](https://i.ibb.co/hWXSBSm/Screenshot-6.png)
 ![App Screenshot](https://i.ibb.co/3W5FwHp/Screenshot-7.png)
