@@ -3,6 +3,7 @@ import bcrypt from "bcryptjs";
 import updatePasswordValidationSchema from "../../validations/authValidations/updatePasswordValidationSchema.js";
 
 const updatePassword = async (req, res) => {
+  
   const { password, confirmPassword } = req.body;
   const { id } = req.params;
 

@@ -14,7 +14,7 @@ router.get("/logout", verifyToken, tryCatch(logoutController.logoutUser));
 router.put(
   "/updatePassword/:id",
   verifyToken,
-  updatePasswordController.updatePassword
+  tryCatch(updatePasswordController.updatePassword)
 );
 
 export default router;
