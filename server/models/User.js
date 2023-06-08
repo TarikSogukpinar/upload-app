@@ -1,5 +1,5 @@
-import moongose from "mongoose";
-import moment from "moment";
+import moongose from 'mongoose'
+import moment from 'moment'
 
 const userSchema = new moongose.Schema(
   {
@@ -7,15 +7,15 @@ const userSchema = new moongose.Schema(
     email: { type: String, required: true, unique: true },
     password: { type: String, required: true },
     confirmPassword: { type: String, required: true },
-    roles: { type: String, default: "user", enum: ["user", "admin"] },
+    roles: { type: String, default: 'user', enum: ['user', 'admin'] },
     createdAt: {
       type: String,
-      default: moment().format("MMMM Do YYYY, h:mm:ss a"),
+      default: moment().format('MMMM Do YYYY, h:mm:ss a'),
     },
   },
-  { timestamps: true, versionKey: false }
-);
+  { timestamps: true, versionKey: false },
+)
 
-const User = new moongose.model("user", userSchema);
+const User = new moongose.model('user', userSchema)
 
-export default User;
+export default User

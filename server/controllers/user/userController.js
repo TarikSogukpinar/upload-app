@@ -1,45 +1,45 @@
-import User from "../../models/User.js";
-import { getIpInformation } from "../../helpers/utils/locations.js";
-import { getLocationInformation } from "../../helpers/utils/ipify.js";
-import os from "os";
+import User from '../../models/User.js'
+import { getIpInformation } from '../../helpers/utils/locations.js'
+import { getLocationInformation } from '../../helpers/utils/ipify.js'
+import os from 'os'
 
 const getUser = async (req, res) => {
-  const user = await User.find(req.user.id);
+  const user = await User.find(req.user.id)
 
   if (user === null || user === undefined) {
-    return res.status(404).json({ error: true, message: "User not found" });
+    return res.status(404).json({ error: true, message: 'User not found' })
   }
 
-  res.send(user);
-};
+  res.send(user)
+}
 
 const getUserById = async (req, res) => {
-  const { id } = req.params;
+  const { id } = req.params
 
-  const user = await User.findById(id);
-  return res.json(user);
-};
+  const user = await User.findById(id)
+  return res.json(user)
+}
 
 const userAccountDeleted = async (req, res) => {
-  const { id } = req.params;
-  const user = await User.findByIdAndDelete(id);
+  const { id } = req.params
+  const user = await User.findByIdAndDelete(id)
 
   if (!user) {
-    return res.status(404).json({ error: true, message: "User not found" });
+    return res.status(404).json({ error: true, message: 'User not found' })
   }
 
-  return res.status(200).json({ error: false, message: "User deleted" });
-};
+  return res.status(200).json({ error: false, message: 'User deleted' })
+}
 
 const getUserLocationInformation = async (req, res) => {
-  const getIp = await getIpInformation();
-  const getLocation = await getLocationInformation(getIp);
+  const getIp = await getIpInformation()
+  const getLocation = await getLocationInformation(getIp)
 
-  return res.status(200).json({ error: false, getLocation, getIp });
-};
+  return res.status(200).json({ error: false, getLocation, getIp })
+}
 
 const getUserOperatingSystemType = async (req, res) => {
-  let getUserOperatingSystemType = await os.type();
+  let getUserOperatingSystemType = await os.type()
 
   if (
     getUserOperatingSystemType == null ||
@@ -47,23 +47,24 @@ const getUserOperatingSystemType = async (req, res) => {
   ) {
     return res
       .status(404)
-      .json({ error: true, message: "User operating system type not found" });
+      .json({ error: true, message: 'User operating system type not found' })
   }
 
-  if (getUserOperatingSystemType === "Darwin") {
-    getLocationInformation = "MacOS";
+  if (getUserOperatingSystemType === 'Darwin') {
+    // eslint-disable-next-line no-import-assign
+    getLocationInformation = 'MacOS'
   }
 
-  if (getUserOperatingSystemType === "Windows_NT") {
-    getUserOperatingSystemType = "Windows";
+  if (getUserOperatingSystemType === 'Windows_NT') {
+    getUserOperatingSystemType = 'Windows'
   }
 
-  if (getUserOperatingSystemType === "Linux") {
-    getUserOperatingSystemType = "Linux";
+  if (getUserOperatingSystemType === 'Linux') {
+    getUserOperatingSystemType = 'Linux'
   }
 
-  return res.status(200).json({ error: false, getUserOperatingSystemType });
-};
+  return res.status(200).json({ error: false, getUserOperatingSystemType })
+}
 
 export default {
   getUser,
@@ -71,4 +72,4 @@ export default {
   getUserOperatingSystemType,
   userAccountDeleted,
   getUserById,
-};
+}

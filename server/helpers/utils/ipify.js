@@ -1,13 +1,12 @@
-import geoip from "geoip-lite";
+import geoip from 'geoip-lite'
 
-
-export const getLocationInformation = async (ip) => {
+export const getLocationInformation = async (ip, res) => {
   try {
-    const getLocationInformation = await geoip.lookup(ip);
+    const getLocationInformation = await geoip.lookup(ip)
 
-    return getLocationInformation;
+    return getLocationInformation
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: true, message: error.message });
+    console.log(error)
+    res.status(500).json({ error: true, message: error.message })
   }
-};
+}

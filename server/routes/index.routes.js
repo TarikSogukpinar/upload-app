@@ -1,19 +1,16 @@
-import express from "express";
-import authRoutes from "./auth/auth.routes.js";
-import userRoutes from "./user/user.routes.js";
-import uploadRoutes from "./upload/upload.routes.js";
-
-const app = express();
+import authRoutes from './auth/auth.routes.js'
+import userRoutes from './user/user.routes.js'
+import uploadRoutes from './upload/upload.routes.js'
 
 export function initRoutes(app) {
-  app.use("/api/auth", authRoutes);
-  app.use("/api/user", userRoutes);
-  app.use("/api/upload", uploadRoutes);
+  app.use('/api/auth', authRoutes)
+  app.use('/api/user', userRoutes)
+  app.use('/api/upload', uploadRoutes)
 
-  app.all("*", (req, res) => {
+  app.all('*', (res) => {
     res.status(404).json({
       error: true,
-      message: "Route not found",
-    });
-  });
+      message: 'Route not found',
+    })
+  })
 }

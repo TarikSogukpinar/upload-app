@@ -1,7 +1,7 @@
-export const tryCatch = (controller) => async (req, res) => {
+export const tryCatch = (controller) => async (req, res, next) => {
   try {
-    return await controller(req, res);
+    return await controller(req, res)
   } catch (error) {
-    return next(error);
+    return next(error)
   }
-};
+}

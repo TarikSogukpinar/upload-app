@@ -1,34 +1,34 @@
-import { Router } from "express";
-import userController from "../../controllers/user/userController.js";
-import { verifyToken } from "../../middleware/verifyTokens/verifyToken.js";
-import { tryCatch } from "../../helpers/utils/tryCatch.js";
+import { Router } from 'express'
+import userController from '../../controllers/user/userController.js'
+import { verifyToken } from '../../middleware/verifyTokens/verifyToken.js'
+import { tryCatch } from '../../helpers/utils/tryCatch.js'
 
-const router = Router();
+const router = Router()
 
-router.get("/getUser", verifyToken, tryCatch(userController.getUser));
-
-router.get(
-  "/getUserById/:id",
-  verifyToken,
-  tryCatch(userController.getUserById)
-);
+router.get('/getUser', verifyToken, tryCatch(userController.getUser))
 
 router.get(
-  "/getUserLocationInformation",
+  '/getUserById/:id',
   verifyToken,
-  tryCatch(userController.getUserLocationInformation)
-);
+  tryCatch(userController.getUserById),
+)
 
 router.get(
-  "/getUserOperatingSystemType",
+  '/getUserLocationInformation',
   verifyToken,
-  tryCatch(userController.getUserOperatingSystemType)
-);
+  tryCatch(userController.getUserLocationInformation),
+)
+
+router.get(
+  '/getUserOperatingSystemType',
+  verifyToken,
+  tryCatch(userController.getUserOperatingSystemType),
+)
 
 router.delete(
-  "/userAccountDeleted/:id",
+  '/userAccountDeleted/:id',
   verifyToken,
-  tryCatch(userController.userAccountDeleted)
-);
+  tryCatch(userController.userAccountDeleted),
+)
 
-export default router;
+export default router
