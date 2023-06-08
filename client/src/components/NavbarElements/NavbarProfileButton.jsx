@@ -165,27 +165,29 @@ export default function NavbarProfileButton({ cookie }) {
           </button>
 
           {isOpen && (
-            <div
-              className="absolute end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
-              role="menu"
-            >
-              <div className="p-2">
-                {
-                  <button
-                    onClick={toggleModal}
-                    className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-dark hover:bg-indigo-50"
-                    role="menuitem"
-                  >
-                    <FiSettings /> Manage Account
-                  </button>
-                }
+            <div className="max-m:flex max-m:items-center max-m:justify-center  ">
+              <div
+                className="absolute max-m:relative end-0 z-10 mt-2 w-56 divide-y divide-gray-100 rounded-md border border-gray-100 bg-white shadow-lg"
+                role="menu"
+              >
+                <div className="p-2">
+                  {
+                    <button
+                      onClick={toggleModal}
+                      className="flex w-full items-center gap-2 rounded-lg px-4 py-2 text-sm text-dark hover:bg-indigo-50"
+                      role="menuitem"
+                    >
+                      <FiSettings /> Manage Account
+                    </button>
+                  }
+                </div>
+                <Modal
+                  cookie={cookie}
+                  isOpen={isOpenModal}
+                  toggle={toggleModal}
+                />
+                <NavbarLogoutButton />
               </div>
-              <Modal
-                cookie={cookie}
-                isOpen={isOpenModal}
-                toggle={toggleModal}
-              />
-              <NavbarLogoutButton />
             </div>
           )}
         </div>

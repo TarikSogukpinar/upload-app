@@ -82,7 +82,7 @@ const getUserOperatingSystemType = async (req, res) => {
       getUserOperatingSystemType = "Linux";
     }
 
-    res.status(200).json({ error: false, getUserOperatingSystemType });
+    return res.status(200).json({ error: false, getUserOperatingSystemType });
   } catch (error) {
     console.log(error);
     return res.status(500).json({ error: true, message: error.message });

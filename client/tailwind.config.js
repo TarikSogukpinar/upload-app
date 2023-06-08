@@ -28,6 +28,7 @@ module.exports = {
         xs: "320px",
         s: "375px",
         m: "425px",
+        "max-m": { max: "425px" },
       },
     },
   },

@@ -1,6 +1,6 @@
 import ipify from "ipify";
 
-export const getIpInformation = async () => {
+export const getIpInformation = async (req, res) => {
   try {
     const getIpInformation = await ipify({ useIPv6: false });
 
